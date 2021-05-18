@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/styles.css">
+  <title>Frontend Mentor | Calculator app</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+</head>
+<body>
+<main>
+  <div class="outer_container">
+    <div class="top_container">
+      <h1 id="calc">calc</h1>
+      <div class="themes_container">
+      <p id="theme">THEME</p>
+      </div>
+    </div>
+    <div class="screen_container">
+      <div class="subScreen">
+        <p id="total">00</p>
+      </div>
+      <div class="mainScreen">
+        <h1 id="display">00</h1>
+      </div>
+    </div>
+    <div class="keypad_container">
+      <div class="">
+        <button class="num" value="7">7</button>
+        <button class="num" value="8">8</button>
+        <button class="num" value="9">9</button>
+        <button onclick="deleteOne()" class="deleteButton">DEL</button>
+      </div>
+      <div class="">
+        <button class="num" value="4">4</button>
+        <button class="num" value="5">5</button>
+        <button class="num" value="6">6</button>
+        <button class="num" value="+">+</button>
+      </div>
+      <div class="">
+        <button class="num" value="1">1</button>
+        <button class="num" value="2">2</button>
+        <button class="num" value="3">3</button>
+        <button class="num" value="-">-</button>
+      </div>
+      <div class="">
+        <button onclick="addDecimal()" class="" value=".">.</button>
+        <button onclick="zero()" value="0">0</button>
+        <button class="num" value="/">/</button>
+        <button class="num" value="*">*</button>
+      </div>
+      <div class="">
+        <button onclick="clearScreen()" class="resetButton">RESET</button>
+        <button onclick="getResult()" class="resultButton">=</button>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+result = "0";
+var display = $("#display");
+var total = $("#total");
+$(".num").click(function() {
+if (Number.isInteger(parseInt($(this).text())))  {
+  if (!Number.isInteger(parseInt(result[result.length-2])) && result[result.length-2]!=="." && result[result.length-1]==="0") {
+    result = result.slice(0, -1);
+    result += $(this).text();
+    return;
+  }
+  result += $(this).text();
+} else if (checkValidity(result) && result.length!==0 && result[result.length-1]!==".") {
+  result += $(this).text();
+} else if (result.length!==0) {
+  result = result.slice(0, -1);
+  result += $(this).text();
+} else {
+  return;
+}
+});
+function zero() {
+if ((result[result.length-1]==="0" && !Number.isInteger(parseInt(result[result.length-2])))) {
+  if (result[result.length-2]===".") {
+     result += "0";
+     display.html(result)
+  }
+  console.log("Cannot insert 0, i'll be Syntax error..");
+} else if (result.length===0) {
+  display.html("0");
+} else  {
+  result += "0";
+  display.html(result);
+}
+}
+function addDecimal() {
+  if (checkValidity(result+".")) {
+    result += ".";
+  }
+  if (result.length===0) {
+    result += "0.";
+  }
+}
+function getResult() {
+  try {
+    if (Number.isInteger(parseInt(result.slice(-1)))) {
+      total.html(result+" = ");
+      display.html(eval(result));
+    result = "0";
+  } else {
+    display.html("Syntax error...please check!");
+  }
+} catch (e) {
+    display.html("Syntax Error..");
+    result = "0";
+  }
+}
+function clearScreen() {
+  result = "0";
+}
+function checkValidity(str) {
+  try {
+    console.log(eval(str));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+function deleteOne() {
+  result = result.slice(0, -1);
+}
+$("button").click(function() {
+  if ($(this).text()!=="=" && $(this).text()!=="0") {
+    display.html(result);
+  }
+});
+</script>
+</body>
+</html>
+
+<!-- <div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  Coded by <a href="#">Your Name Here</a>.
+</div> -->
