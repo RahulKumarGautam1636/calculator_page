@@ -11,26 +11,100 @@
   <title>Frontend Mentor | Calculator app</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
+  .theme0{
+    /* ### Theme 1 */
+   /* #### Backgrounds */
+   --mainBG : hsl(222, 26%, 31%);/*(main background)*/
+   --toggleBG : hsl(223, 31%, 20%);/*(toggle background, keypad background)*/
+   --screenBG : hsl(224, 36%, 15%);/*(screen background)*/
+
+   /* #### Keys */
+   /* there are three types of button and have their respective backgrounds */
+   --key1 : hsl(225, 21%, 49%);/*(key background)*/
+   --keyShadow1 : hsl(224, 28%, 35%);/*(key shadow)*/
+
+   --key2 : hsl(6, 63%, 50%);/*(key background, toggle)*/
+   --keyShadow2 : hsl(6, 70%, 34%);/*(key shadow)*/
+
+   --key : hsl(30, 25%, 89%);/*(key background)*/
+   --keyShadow : hsl(28, 16%, 65%);/*(key shadow)*/
+
+   /* #### Text */
+   --text1: hsl(221, 14%, 31%);
+   --text2: white;
+}
+.theme1{
+   /* ### Theme 2 */
+   /* #### Backgrounds */
+   --mainBG : hsl(0, 0%, 90%);/*(main background)*/
+   --toggleBG : hsl(0, 5%, 81%);/*(toggle background, keypad background)*/
+   --screenBG : hsl(0, 0%, 93%);/*(screen background)*/
+
+   /* #### Keys */
+   --key1: hsl(185, 42%, 37%); /*(key background)*/
+   --keyShadow1 : hsl(185, 58%, 25%);/*(key shadow)*/
+
+   --key2 : hsl(25, 98%, 40%);/*(key background, toggle)*/
+   --keyShadow2 : hsl(25, 99%, 27%);/*(key shadow)*/
+
+   --key : hsl(45, 7%, 89%);/*(key background)*/
+   --keyShadow : hsl(35, 11%, 61%);/*(key shadow)*/
+
+   /* #### Text */
+   --text1: hsl(60, 10%, 19%);
+   --text2: white;/* (text)*/
+}
+.theme2{
+   /* ### Theme 3 */
+   /* #### Backgrounds */
+   --mainBG : hsl(268, 75%, 9%);/*(main background)*/
+   --toggleBG : hsl(268, 71%, 12%);/*(toggle background, keypad background)*/
+   --screenBG : hsl(268, 71%, 12%);/*(screen background)*/
+
+   /* #### Keys */
+   --key1 : hsl(281, 89%, 26%);/*(key background)*/
+   --keyShadow1: hsl(285, 91%, 52%);/*(key shadow)*/
+
+   --key2 : hsl(176, 100%, 44%);/*(key background, toggle)*/
+   --keyShadow2 : hsl(177, 92%, 70%);/*(key shadow)*/
+
+   --key : hsl(268, 47%, 21%);/*(key background)*/
+   --keyShadow : hsl(290, 70%, 36%);/*(key shadow)*/
+
+   /* #### Text */
+   /* --VeryDarkBlue: hsl(198, 20%, 13%); */
+   --text1: hsl(52, 100%, 62%);
+   --text2: white;/*(text)*/
+}
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Spartan', sans-serif;
   }
   main {
     height: 54rem;
-    width: 100%;
-    background: hsl(222, 26%, 31%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  main * div {
-    /* border: 1px solid white; */
-    border-radius: 10px;
+    overflow: hidden;
   }
   .outer_container {
+    height: 164rem;
+    width: 100%;
+    transform: translateY(-108rem);
+    transition: 0.8s linear;
+  }
+  .calculator_body > div {
+    border-radius: 10px;
+  }
+  .calculator_body * {
+    transition: 0.5s linear;
+  }
+  .calculator_body {
     height: 37rem;
     width: 29%;
     min-width: 29rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
   }
   /* .top_container div { border: 1px solid red; } */
   .top_container {
@@ -62,13 +136,13 @@
   }
   .themeNumbers_container p {
     font-size: 0.7rem;
-    color: white;
+    color: var(--text2);
   }
   .toggleBar {
     height: 50%;
     width: 100%;
     display: flex;
-    background: hsl(223, 31%, 20%);
+    background: var(--toggleBG);
     border-radius: 30px;
     align-items: center;
     justify-content: flex-start;
@@ -86,21 +160,21 @@
     margin-left: 2.55rem;
   }
   #calc {
-    color: white;
+    color: var(--text2);
     margin-bottom: -0.4rem;
   }
   #theme {
-    color: white;
+    color: var(--text2);
     font-size: 0.65rem;
     margin-bottom: 0.25rem;
   }
   #total {
-    color: white;
+    color: var(--text2);
   }
   .screen_container {
     height: 19%;
     width: 100%;
-    background: hsl(224, 36%, 15%);
+    background: var(--screenBG);
     margin-bottom: 1.2rem;
   }
   .subScreen {
@@ -115,7 +189,7 @@
     position: relative;
     margin: auto 1.6rem 1rem auto;
     font-size: 2.5rem;
-    color: white;
+    color: var(--text2);
     transition: 0.3s ease-in-out;
     /* transform: translate(-22rem, -3rem); */
   }
@@ -127,7 +201,7 @@
     align-items: center;
     flex-direction: column;
     padding: 1.4rem 1.2rem;
-    background: hsl(223, 31%, 20%);
+    background: var(--toggleBG);
   }
   .keypad_container div {
     width: 100%;
@@ -141,43 +215,56 @@
     width: 21%;
     border-radius: 8px;
     font-size: 1.2rem;
-    color: hsl(221, 14%, 31%);
+    color: var(--text1);
     font-weight: bolder;
     font-family: 'Spartan', sans-serif;
     padding-top: 0.2rem;
     outline: none;
     border: none;
-    background: hsl(30, 25%, 89%);
-    box-shadow: hsl(28, 16%, 65%) 1px 0.25rem 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    background: var(--key);
+    box-shadow: var(--keyShadow) 1px 0.25rem 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
   }
   button:active {
     box-shadow: none;
     transform: translateY(3.5px);
   }
   .resetButton, .deleteButton {
-    color: white;
+    color: var(--text2);
     font-size: 1rem;
-    background: hsl(225, 21%, 49%);
-    box-shadow: hsl(224, 28%, 35%) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    background: var(--key1);
+    box-shadow: var(--keyShadow1) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
   }
   .resetButton, .resultButton {
     width: 46%;
   }
   .resultButton {
-    background: hsl(6, 63%, 50%);
-    box-shadow: hsl(6, 70%, 34%) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
-    color: white;
+    background: var(--key2);
+    box-shadow: var(--keyShadow2) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    color: var(--text2);
     padding-top: 0.5rem;
+  }
+  .outer_container div {
+    height: 54rem;
+    width: 100%;
+  }
+  .background1 {
+    background: hsl(268, 75%, 9%);
+  }
+  .background2 {
+    background: hsl(0, 0%, 90%);
+  }
+  .background3 {
+    background: hsl(222, 26%, 31%);
   }
 
   @media only screen and (max-width: 500px) {
     html {
       font-size: 90%;
     }
-    main {
+    .outer_container {
       padding-bottom: 5rem;
     }
-    .outer_container {
+    .calculator_body {
       height: 123vw;
       width: 90%;
       min-width: auto;
@@ -192,12 +279,11 @@
       font-size: 3.3vw;
     }
   }
-
   </style>
 </head>
-<body>
+<body class="theme0">
 <main>
-  <div class="outer_container">
+  <div class="calculator_body">
     <div class="top_container">
       <h1 id="calc">calc</h1>
       <div class="themes_container">
@@ -253,14 +339,39 @@
       </div>
     </div>
   </div>
+<div class="outer_container">
+  <div class="background1"></div>
+  <div class="background2"></div>
+  <div class="background3"></div>
+</div>
 </main>
 <script>
 var toggleButton = $(".roundButton");
 var toggle = $(".toggleBar");
+var body = $("body");
+var bg = 1;
+var i = true;
 function toggleTheme() {
-  toggleButton.toggleClass("moveToggleButton");
+  $(".outer_container").css("transform", "translateY(-"+(108-bg*54)+"rem)");
+  toggleButton.css("margin-left", (1.275*bg)+"rem");
+  console.log(bg);
+  body.addClass("theme"+bg);
+  body.removeClass("theme"+(bg+1));
+  if ( bg === 2 && i === true ) {
+    i = false;
+    console.log("one");
+    body.removeClass("theme"+(bg+2));
+    bg--;
+  } else if ( bg === 1 && i === false ) {
+    i = true;
+    console.log("two");
+    bg--;
+  } else {
+    bg++;
+  }
 }
 // -------------------------------------JS Code for calculation-------------------------------------------
+
 result = "0";
 timeline = ""
 var display = $("#display");
@@ -312,11 +423,11 @@ function getResult() {
     result = "0";
     timeline = "";
   } else {
-    display.html("Syntax error...please check!");
+    total.html("Syntax error...please check!");
   }
 } catch (e) {
-    display.html("Syntax Error..");
-    result = "0";
+    total.html("Syntax Error..");
+    // result = "0";
   }
   // display.css("transform", "translate(-11.5rem, -3rem)");
   // setTimeout(function() {
