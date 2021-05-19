@@ -53,6 +53,7 @@ main * div {
 .mainScreen {
   height: 70%;
   display: flex;
+  overflow: scroll;
 }
 .mainScreen h1 {
   position: relative;
