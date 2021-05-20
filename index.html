@@ -27,8 +27,8 @@
 
    --text1: hsl(0, 0%, 100%);
    --text2: hsl(221, 14%, 31%);
-}
-.theme1{
+  }
+  .theme1{
    --mainBG : hsl(0, 0%, 90%);
    --toggleBG : hsl(0, 5%, 81%);
    --screenBG : hsl(0, 0%, 93%);
@@ -44,8 +44,8 @@
 
    --text1: hsl(60, 10%, 19%);
    --text2: hsl(60, 10%, 19%);
-}
-.theme2{
+  }
+  .theme2{
    --mainBG : hsl(268, 75%, 9%);
    --toggleBG : hsl(268, 71%, 12%);
    --screenBG : hsl(268, 71%, 12%);
@@ -62,7 +62,7 @@
 
    --text1: hsl(52, 100%, 62%);
    --text2: hsl(52, 100%, 62%);
-}
+  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Spartan', sans-serif;
@@ -81,7 +81,7 @@
     border-radius: 10px;
   }
   .calculator_body * {
-    transition: background, color, 1s ease-in-out;
+    transition: background 1.5s, color 1.5s ease-in-out;
   }
   .calculator_body {
     height: 37rem;
@@ -138,9 +138,7 @@
     width: 1.1rem;
     background: var(--key2);
     border-radius: 50%;
-  }
-  .moveToggleButton {
-    margin-left: 2.55rem;
+    transition: all 1s linear;
   }
   #calc {
     color: var(--text1);
@@ -151,18 +149,26 @@
     font-size: 0.65rem;
     margin-bottom: 0.25rem;
   }
-  #total {
+  .total {
     color: var(--text1);
+    margin: 1rem 0 0 1rem;
+    transition: 0.2s ease-in-out;
+    transform: translateX(86vw);
+  }
+  .moveTotal {
+    transform: translateX(0);
   }
   .screen_container {
-    height: 19%;
+    height: 22%;
     width: 100%;
     background: var(--screenBG);
     margin-bottom: 1.2rem;
+    /* overflow: scroll; */
+    overflow: hidden;
   }
   .subScreen {
     height: 30%;
-    padding: 0.7rem 1rem;
+    display: flex;
   }
   .mainScreen {
     height: 70%;
@@ -216,7 +222,7 @@
     box-shadow: var(--keyShadow1) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
   }
   .resetButton, .resultButton {
-    width: 46%;
+    width: 47%;
   }
   .resultButton {
     background: var(--key2);
@@ -239,33 +245,52 @@
   }
 
   @media only screen and (max-width: 500px) {
-     html {
-      font-size: 110%;
-    }
     .outer_container {
       padding-bottom: 5rem;
     }
+    .calculator_body > div {
+      border-radius: 2vw;
+    }
     .calculator_body {
-      height: 135vw;
+      height: 123vw;
       width: 90%;
       min-width: auto;
     }
     .mainScreen h1 {
-      font-size: 9.3vw;
-      }
-   .keypad_container {
-      padding: 1rem 0.5rem;
-      height: 75%;
-   } 
+      font-size: 8.7vw;
+      margin: auto 4vw 3vw auto;
+    }
+    .total {
+      font-size: 4vw;
+      margin-top: auto;
+    }
     button {
       font-size: 3.7vw;
-      border-radius: 7px;
+      border-radius: 1.7vw;
     }
     .resetButton, .deleteButton {
       font-size: 3.3vw;
     }
   }
-  </style>
+  @media only screen and (max-width: 420px) {
+  .calculator_body {
+    height: 129vw;
+  }
+  .screen_container {
+    height: 23%;
+    margin-bottom: 1.6rem;
+  }
+  .mainScreen {
+    height: 65%;
+  }
+  .subScreen {
+    /* height: 27%; */
+  }
+  .keypad_container {
+    padding: 4vw 3.5vw;
+  }
+  }
+</style>
 </head>
 <body class="theme0">
 <main>
@@ -288,7 +313,7 @@
     </div>
     <div class="screen_container">
       <div class="subScreen">
-        <p id="total"></p>
+        <p class="total"></p>
       </div>
       <div class="mainScreen">
         <h1 id="display">0</h1>
@@ -358,7 +383,7 @@ function toggleTheme() {
 result = "0";
 timeline = ""
 var display = $("#display");
-var total = $("#total");
+var total = $(".total");
 $(".num").click(function() {
 if (Number.isInteger(parseInt($(this).text())))  {
   if (!Number.isInteger(parseInt(result[result.length-2])) && result[result.length-2]!=="." && result[result.length-1]==="0") {
@@ -402,6 +427,7 @@ function getResult() {
   try {
     if (Number.isInteger(parseInt(result.slice(-1)))) {
       total.html(result+" = ");
+      // total.addClass("moveTotal");
       display.html(Number.parseFloat(eval(result)).toFixed(3));
     result = "0";
     timeline = "";
@@ -411,12 +437,7 @@ function getResult() {
 } catch (e) {
     total.html("Syntax Error..");
   }
-  // display.css("transform", "translate(-11.5rem, -3rem)");
-  // setTimeout(function() {
-  //   display.css("opacity", "0");
-  //   display.css("transform", "translate(0, 0)");
-  //   display.css("opacity", "1");
-  // },300);
+  total.addClass("moveTotal");
 }
 function clearScreen() {
   result = "0";
@@ -437,6 +458,7 @@ $("button").click(function() {
   if ($(this).text()!=="=" && $(this).text()!=="0") {
     display.html(result);
     total.html(timeline);
+    total.removeClass("moveTotal");
   }
 });
 </script>
