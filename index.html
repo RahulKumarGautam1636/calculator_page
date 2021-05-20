@@ -12,69 +12,56 @@
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
   .theme0{
-    /* ### Theme 1 */
-   /* #### Backgrounds */
-   --mainBG : hsl(222, 26%, 31%);/*(main background)*/
-   --toggleBG : hsl(223, 31%, 20%);/*(toggle background, keypad background)*/
-   --screenBG : hsl(224, 36%, 15%);/*(screen background)*/
+   --mainBG : hsl(222, 26%, 31%);
+   --toggleBG : hsl(223, 31%, 20%);
+   --screenBG : hsl(224, 36%, 15%);
 
-   /* #### Keys */
-   /* there are three types of button and have their respective backgrounds */
-   --key1 : hsl(225, 21%, 49%);/*(key background)*/
-   --keyShadow1 : hsl(224, 28%, 35%);/*(key shadow)*/
+   --key1 : hsl(225, 21%, 49%);
+   --keyShadow1 : hsl(224, 28%, 35%);
 
-   --key2 : hsl(6, 63%, 50%);/*(key background, toggle)*/
-   --keyShadow2 : hsl(6, 70%, 34%);/*(key shadow)*/
+   --key2 : hsl(6, 63%, 50%);
+   --keyShadow2 : hsl(6, 70%, 34%);
 
-   --key : hsl(30, 25%, 89%);/*(key background)*/
-   --keyShadow : hsl(28, 16%, 65%);/*(key shadow)*/
+   --key : hsl(30, 25%, 89%);
+   --keyShadow : hsl(28, 16%, 65%);
 
-   /* #### Text */
-   --text1: hsl(221, 14%, 31%);
-   --text2: white;
+   --text1: hsl(0, 0%, 100%);
+   --text2: hsl(221, 14%, 31%);
 }
 .theme1{
-   /* ### Theme 2 */
-   /* #### Backgrounds */
-   --mainBG : hsl(0, 0%, 90%);/*(main background)*/
-   --toggleBG : hsl(0, 5%, 81%);/*(toggle background, keypad background)*/
-   --screenBG : hsl(0, 0%, 93%);/*(screen background)*/
+   --mainBG : hsl(0, 0%, 90%);
+   --toggleBG : hsl(0, 5%, 81%);
+   --screenBG : hsl(0, 0%, 93%);
 
-   /* #### Keys */
-   --key1: hsl(185, 42%, 37%); /*(key background)*/
-   --keyShadow1 : hsl(185, 58%, 25%);/*(key shadow)*/
+   --key1: hsl(185, 42%, 37%);
+   --keyShadow1 : hsl(185, 58%, 25%);
 
-   --key2 : hsl(25, 98%, 40%);/*(key background, toggle)*/
-   --keyShadow2 : hsl(25, 99%, 27%);/*(key shadow)*/
+   --key2 : hsl(25, 98%, 40%);
+   --keyShadow2 : hsl(25, 99%, 27%);
 
-   --key : hsl(45, 7%, 89%);/*(key background)*/
-   --keyShadow : hsl(35, 11%, 61%);/*(key shadow)*/
+   --key : hsl(45, 7%, 89%);
+   --keyShadow : hsl(35, 11%, 61%);
 
-   /* #### Text */
    --text1: hsl(60, 10%, 19%);
-   --text2: white;/* (text)*/
+   --text2: hsl(60, 10%, 19%);
 }
 .theme2{
-   /* ### Theme 3 */
-   /* #### Backgrounds */
-   --mainBG : hsl(268, 75%, 9%);/*(main background)*/
-   --toggleBG : hsl(268, 71%, 12%);/*(toggle background, keypad background)*/
-   --screenBG : hsl(268, 71%, 12%);/*(screen background)*/
+   --mainBG : hsl(268, 75%, 9%);
+   --toggleBG : hsl(268, 71%, 12%);
+   --screenBG : hsl(268, 71%, 12%);
 
-   /* #### Keys */
-   --key1 : hsl(281, 89%, 26%);/*(key background)*/
-   --keyShadow1: hsl(285, 91%, 52%);/*(key shadow)*/
+   --key1 : hsl(281, 89%, 26%);
+   /* --key1: hsl(52, 100%, 62%); */
+   --keyShadow1: hsl(285, 91%, 52%);
 
-   --key2 : hsl(176, 100%, 44%);/*(key background, toggle)*/
-   --keyShadow2 : hsl(177, 92%, 70%);/*(key shadow)*/
+   --key2 : hsl(176, 100%, 44%);
+   --keyShadow2 : hsl(177, 92%, 70%);
 
-   --key : hsl(268, 47%, 21%);/*(key background)*/
-   --keyShadow : hsl(290, 70%, 36%);/*(key shadow)*/
+   --key : hsl(268, 47%, 21%);
+   --keyShadow : hsl(290, 70%, 36%);
 
-   /* #### Text */
-   /* --VeryDarkBlue: hsl(198, 20%, 13%); */
    --text1: hsl(52, 100%, 62%);
-   --text2: white;/*(text)*/
+   --text2: hsl(52, 100%, 62%);
 }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -88,13 +75,13 @@
     height: 164rem;
     width: 100%;
     transform: translateY(-108rem);
-    transition: 0.8s linear;
+    transition: 1s ease-in-out;
   }
   .calculator_body > div {
     border-radius: 10px;
   }
   .calculator_body * {
-    transition: 0.5s linear;
+    transition: background, color, 1s ease-in-out;
   }
   .calculator_body {
     height: 37rem;
@@ -106,9 +93,7 @@
     z-index: 2;
     transform: translate(-50%, -50%);
   }
-  /* .top_container div { border: 1px solid red; } */
   .top_container {
-    /* border: 1px solid red; */
     height: 11%;
     width: 100%;
     display: flex;
@@ -136,7 +121,7 @@
   }
   .themeNumbers_container p {
     font-size: 0.7rem;
-    color: var(--text2);
+    color: var(--text1);
   }
   .toggleBar {
     height: 50%;
@@ -147,29 +132,27 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0.3rem;
-    transition: 0.4s ease-in-out;
   }
   .roundButton {
-    transition: 0.4s ease-in-out;
     height: 1.1rem;
     width: 1.1rem;
-    background: red;
+    background: var(--key2);
     border-radius: 50%;
   }
   .moveToggleButton {
     margin-left: 2.55rem;
   }
   #calc {
-    color: var(--text2);
+    color: var(--text1);
     margin-bottom: -0.4rem;
   }
   #theme {
-    color: var(--text2);
+    color: var(--text1);
     font-size: 0.65rem;
     margin-bottom: 0.25rem;
   }
   #total {
-    color: var(--text2);
+    color: var(--text1);
   }
   .screen_container {
     height: 19%;
@@ -189,9 +172,7 @@
     position: relative;
     margin: auto 1.6rem 1rem auto;
     font-size: 2.5rem;
-    color: var(--text2);
-    transition: 0.3s ease-in-out;
-    /* transform: translate(-22rem, -3rem); */
+    color: var(--text1);
   }
   .keypad_container {
     height: 70%;
@@ -215,7 +196,7 @@
     width: 21%;
     border-radius: 8px;
     font-size: 1.2rem;
-    color: var(--text1);
+    color: var(--text2);
     font-weight: bolder;
     font-family: 'Spartan', sans-serif;
     padding-top: 0.2rem;
@@ -229,7 +210,7 @@
     transform: translateY(3.5px);
   }
   .resetButton, .deleteButton {
-    color: var(--text2);
+    color: white;
     font-size: 1rem;
     background: var(--key1);
     box-shadow: var(--keyShadow1) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
@@ -240,7 +221,7 @@
   .resultButton {
     background: var(--key2);
     box-shadow: var(--keyShadow2) 1px 4px 0px 0px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
-    color: var(--text2);
+    color: var(--text1);
     padding-top: 0.5rem;
   }
   .outer_container div {
@@ -258,27 +239,22 @@
   }
 
   @media only screen and (max-width: 500px) {
-       html {
-      font-size: 110%;
+    html {
+      font-size: 90%;
     }
     .outer_container {
       padding-bottom: 5rem;
     }
     .calculator_body {
-      height: 135vw;
+      height: 123vw;
       width: 90%;
       min-width: auto;
     }
     .mainScreen h1 {
       font-size: 9.3vw;
-      }
-   .keypad_container {
-      padding: 1rem 0.5rem;
-      height: 75%;
-   } 
+    }
     button {
       font-size: 3.7vw;
-      border-radius: 7px;
     }
     .resetButton, .deleteButton {
       font-size: 3.3vw;
@@ -299,8 +275,8 @@
            <p>2</p>
            <p>3</p>
         </div>
-            <div class="toggleBar">
-              <div onclick="toggleTheme()" class="roundButton"></div>
+            <div onclick="toggleTheme()" class="toggleBar">
+              <div class="roundButton"></div>
             </div>
         </div>
         </div>
@@ -314,31 +290,31 @@
       </div>
     </div>
     <div class="keypad_container">
-      <div class="">
+      <div class="row_1">
         <button class="num" value="7">7</button>
         <button class="num" value="8">8</button>
         <button class="num" value="9">9</button>
         <button onclick="deleteOne()" class="deleteButton">DEL</button>
       </div>
-      <div class="">
+      <div class="row_2">
         <button class="num" value="4">4</button>
         <button class="num" value="5">5</button>
         <button class="num" value="6">6</button>
         <button class="num" value="+">+</button>
       </div>
-      <div class="">
+      <div class="row_3">
         <button class="num" value="1">1</button>
         <button class="num" value="2">2</button>
         <button class="num" value="3">3</button>
         <button class="num" value="-">-</button>
       </div>
-      <div class="">
+      <div class="row_4">
         <button onclick="addDecimal()" class="" value=".">.</button>
         <button onclick="zero()" value="0">0</button>
         <button class="num" value="/">/</button>
         <button class="num" value="*">*</button>
       </div>
-      <div class="">
+      <div class="row_5">
         <button onclick="clearScreen()" class="resetButton">RESET</button>
         <button onclick="getResult()" class="resultButton">=</button>
       </div>
@@ -359,17 +335,14 @@ var i = true;
 function toggleTheme() {
   $(".outer_container").css("transform", "translateY(-"+(108-bg*54)+"rem)");
   toggleButton.css("margin-left", (1.275*bg)+"rem");
-  console.log(bg);
   body.addClass("theme"+bg);
   body.removeClass("theme"+(bg+1));
   if ( bg === 2 && i === true ) {
     i = false;
-    console.log("one");
     body.removeClass("theme"+(bg+2));
     bg--;
   } else if ( bg === 1 && i === false ) {
     i = true;
-    console.log("two");
     bg--;
   } else {
     bg++;
@@ -428,11 +401,10 @@ function getResult() {
     result = "0";
     timeline = "";
   } else {
-    total.html("Syntax error...please check!");
+    total.html("Syntax error please check..🤔");
   }
 } catch (e) {
     total.html("Syntax Error..");
-    // result = "0";
   }
   // display.css("transform", "translate(-11.5rem, -3rem)");
   // setTimeout(function() {
