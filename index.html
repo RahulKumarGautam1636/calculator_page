@@ -81,7 +81,7 @@
     border-radius: 10px;
   }
   .calculator_body * {
-    transition: background 1.5s, color 1.5s ease-in-out;
+    transition: background 1.4s, color 1.4s ease-in-out;
   }
   .calculator_body {
     height: 37rem;
@@ -152,7 +152,7 @@
   .total {
     color: var(--text1);
     margin: 1rem 0 0 1rem;
-    transition: 0.2s ease-in-out;
+    transition: 0.5s ease-in-out;
     transform: translateX(86vw);
   }
   .moveTotal {
@@ -378,28 +378,61 @@ function toggleTheme() {
     bg++;
   }
 }
-// -------------------------------------JS Code for calculation-------------------------------------------
-
+// -----------------------Code to respond against keypress---------------------
 result = "0";
 timeline = ""
+document.addEventListener("keypress", function(event) {
+var k = event.key;
+  if (k==="0") {
+    zero();
+  } else if (k===".") {
+    addDecimal();
+  } else if (k==="Enter") {
+    getResult();
+  } else if (Number.isInteger(parseInt(k)) ||
+      k === "+" || k === "-" || k === "*" || k === "/") {
+    addNumbers(k);
+  }
+  output(k, "Enter");
+  // if (k !== "Enter" && k !== "0") {
+  //   display.html(result);
+  //   total.html(timeline);
+  //   total.removeClass("moveTotal");
+  // }
+  // return result;
+});
+// document.addEventListener("keypress", function(event) {
+//   if (event.key !== "Enter" && event.key !== "0") {
+//     display.html(result);
+//     total.html(timeline);
+//     total.removeClass("moveTotal");
+//   }
+// })
+// -------------------------------------JS Code for calculation-------------------------------------------
+
 var display = $("#display");
 var total = $(".total");
-$(".num").click(function() {
-if (Number.isInteger(parseInt($(this).text())))  {
-  if (!Number.isInteger(parseInt(result[result.length-2])) && result[result.length-2]!=="." && result[result.length-1]==="0") {
+function addNumbers(n) {
+  if (Number.isInteger(parseInt(n)))  {
+    if (!Number.isInteger(parseInt(result[result.length-2])) && result[result.length-2]!=="." && result[result.length-1]==="0") {
+      result = result.slice(0, -1);
+      result += n;
+      return;
+    }
+    result += n;
+  } else if (checkValidity(result) && result.length!==0 && result[result.length-1]!==".") {
+    result += n;
+  } else if (result.length!==0) {
     result = result.slice(0, -1);
-    result += $(this).text();
+    result += n;
+  } else {
     return;
   }
-  result += $(this).text();
-} else if (checkValidity(result) && result.length!==0 && result[result.length-1]!==".") {
-  result += $(this).text();
-} else if (result.length!==0) {
-  result = result.slice(0, -1);
-  result += $(this).text();
-} else {
-  return;
+  return result;
 }
+$(".num").click(function() {
+   addNumbers($(this).text());
+   // return result;
 });
 function zero() {
 if ((result[result.length-1]==="0" && !Number.isInteger(parseInt(result[result.length-2])))) {
@@ -407,13 +440,14 @@ if ((result[result.length-1]==="0" && !Number.isInteger(parseInt(result[result.l
      result += "0";
      display.html(result)
   }
-  console.log("Cannot insert 0, i'll be Syntax error..");
+  console.log("Cannot insert 0, it can lead to Syntax error..");
 } else if (result.length===0) {
   display.html("0");
 } else  {
   result += "0";
   display.html(result);
 }
+return result;
 }
 function addDecimal() {
   if (checkValidity(result+".")) {
@@ -422,6 +456,7 @@ function addDecimal() {
   if (result.length===0) {
     result += "0.";
   }
+  return result;
 }
 function getResult() {
   try {
@@ -438,10 +473,12 @@ function getResult() {
     total.html("Syntax Error..");
   }
   total.addClass("moveTotal");
+  return result;
 }
 function clearScreen() {
   result = "0";
   timeline = "";
+  return result;
 }
 function checkValidity(str) {
   try {
@@ -453,13 +490,17 @@ function checkValidity(str) {
 }
 function deleteOne() {
   result = result.slice(0, -1);
+  return result;
 }
-$("button").click(function() {
-  if ($(this).text()!=="=" && $(this).text()!=="0") {
+function output(x,y) {
+  if (x !== y && x !== "0") {
     display.html(result);
     total.html(timeline);
     total.removeClass("moveTotal");
   }
+}
+$("button").click(function() {
+  output($(this).text(), "=");
 });
 </script>
 </body>
