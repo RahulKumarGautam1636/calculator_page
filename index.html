@@ -357,6 +357,7 @@
 </div>
 </main>
 <script>
+// -----------------------------JS code for theme changes---------------------
 var toggleButton = $(".roundButton");
 var toggle = $(".toggleBar");
 var body = $("body");
@@ -381,7 +382,8 @@ function toggleTheme() {
 // -----------------------Code to respond against keypress---------------------
 result = "0";
 timeline = ""
-document.addEventListener("keypress", function(event) {
+document.addEventListener("keydown", function(event) {
+  event.preventDefault();
 var k = event.key;
   if (k==="0") {
     zero();
@@ -389,25 +391,14 @@ var k = event.key;
     addDecimal();
   } else if (k==="Enter") {
     getResult();
+  } else if (k==="Backspace") {
+    deleteOne();
   } else if (Number.isInteger(parseInt(k)) ||
       k === "+" || k === "-" || k === "*" || k === "/") {
     addNumbers(k);
   }
   output(k, "Enter");
-  // if (k !== "Enter" && k !== "0") {
-  //   display.html(result);
-  //   total.html(timeline);
-  //   total.removeClass("moveTotal");
-  // }
-  // return result;
 });
-// document.addEventListener("keypress", function(event) {
-//   if (event.key !== "Enter" && event.key !== "0") {
-//     display.html(result);
-//     total.html(timeline);
-//     total.removeClass("moveTotal");
-//   }
-// })
 // -------------------------------------JS Code for calculation-------------------------------------------
 
 var display = $("#display");
@@ -428,26 +419,24 @@ function addNumbers(n) {
   } else {
     return;
   }
-  return result;
+  t = true;
 }
 $(".num").click(function() {
    addNumbers($(this).text());
-   // return result;
 });
 function zero() {
 if ((result[result.length-1]==="0" && !Number.isInteger(parseInt(result[result.length-2])))) {
   if (result[result.length-2]===".") {
      result += "0";
-     display.html(result)
   }
   console.log("Cannot insert 0, it can lead to Syntax error..");
 } else if (result.length===0) {
   display.html("0");
+  return;
 } else  {
   result += "0";
-  display.html(result);
 }
-return result;
+display.html(result);
 }
 function addDecimal() {
   if (checkValidity(result+".")) {
@@ -456,29 +445,36 @@ function addDecimal() {
   if (result.length===0) {
     result += "0.";
   }
-  return result;
 }
+t = true;
+previousResult = "";
 function getResult() {
   try {
     if (Number.isInteger(parseInt(result.slice(-1)))) {
       total.html(result+" = ");
-      // total.addClass("moveTotal");
-      display.html(Number.parseFloat(eval(result)).toFixed(3));
-    result = "0";
+      currentResult = Number.parseFloat(eval(result)).toFixed(4)-0.0000;
+      if (t) {
+        previousResult = currentResult;
+        display.html(currentResult);
+        result = "0";
+      } else {
+        result = previousResult;
+        display.html(previousResult);
+      }
     timeline = "";
   } else {
     total.html("Syntax error please check..🤔");
   }
 } catch (e) {
     total.html("Syntax Error..");
+    console.log(e);
   }
   total.addClass("moveTotal");
-  return result;
+  t = !t;
 }
 function clearScreen() {
   result = "0";
   timeline = "";
-  return result;
 }
 function checkValidity(str) {
   try {
@@ -490,12 +486,13 @@ function checkValidity(str) {
 }
 function deleteOne() {
   result = result.slice(0, -1);
-  return result;
 }
 function output(x,y) {
   if (x !== y && x !== "0") {
     display.html(result);
     total.html(timeline);
+  }
+  if (x !== y || t) {
     total.removeClass("moveTotal");
   }
 }
