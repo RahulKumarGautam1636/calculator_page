@@ -5,20 +5,23 @@ var body = $("body");
 var bg = 1;
 var i = true;
 function toggleTheme() {        // fucntion to change the themes.
-  $(".outer_container").css("transform", "translateY(-"+(108-bg*54)+"rem)");
-  toggleButton.css("margin-left", (1.275*bg)+"rem");
+  $(".outer_container").css("transform", "translateY(-"+(162-bg*54)+"rem)");
+  toggleButton.css("margin-left", (1*bg)+"rem");
   body.addClass("theme"+bg);
   body.removeClass("theme"+(bg+1));
-  if ( bg === 2 && i === true ) {
+  if ( bg === 3 && i === true ) {
     i = false;
-    body.removeClass("theme"+(bg+2));
+    body.removeClass("theme"+(bg+3));
     bg--;
   } else if ( bg === 1 && i === false ) {
     i = true;
     bg--;
-  } else {
+  } else if (i===true) {
     bg++;
+  } else if (i===false) {
+    bg--
   }
+  console.log(bg);
 }
 // -----------------------JS Code to respond against keypress---------------------
 result = "0";
