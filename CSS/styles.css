@@ -1,4 +1,4 @@
-.theme0{
+.theme0 {
  --mainBG : hsl(222, 26%, 31%);
  --toggleBG : hsl(223, 31%, 20%);
  --screenBG : hsl(224, 36%, 15%);
@@ -15,7 +15,7 @@
  --text1: hsl(0, 0%, 100%);
  --text2: hsl(221, 14%, 31%);
 }
-.theme1{
+.theme1 {
  --mainBG : hsl(0, 0%, 90%);
  --toggleBG : hsl(0, 5%, 81%);
  --screenBG : hsl(0, 0%, 93%);
@@ -32,13 +32,12 @@
  --text1: hsl(60, 10%, 19%);
  --text2: hsl(60, 10%, 19%);
 }
-.theme2{
+.theme2 {
  --mainBG : hsl(268, 75%, 9%);
  --toggleBG : hsl(268, 71%, 12%);
  --screenBG : hsl(268, 71%, 12%);
 
  --key1 : hsl(281, 89%, 26%);
- /* --key1: hsl(52, 100%, 62%); */
  --keyShadow1: hsl(285, 91%, 52%);
 
  --key2 : hsl(176, 100%, 44%);
@@ -50,6 +49,24 @@
  --text1: hsl(52, 100%, 62%);
  --text2: hsl(52, 100%, 62%);
 }
+.theme3 {
+ --mainBG: #5c040c;
+ --toggleBG: #ff0c00;
+ --screenBG: #ff0c00;
+
+ --key : #e91e63;
+ --keyShadow: hsl(8deg, 91%, 70%);
+
+ --key1 : hsl(197deg, 100%, 27%);
+ --keyShadow1 : hsl(213deg, 91%, 52%);
+
+ --key2 : hsl(108deg, 100%, 44%);
+ --keyShadow2 : hsl(105deg, 86%, 32%);
+
+ --text2: hsl(119deg, 99%, 49%);
+ /* --text1: #ff0c00; */
+ --text1: cyan;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Spartan', sans-serif;
@@ -57,13 +74,15 @@ body {
 main {
   height: 54rem;
   overflow: hidden;
+  position: relative;
 }
 .outer_container {
-  height: 164rem;
+  height: 218rem;
   width: 100%;
-  transform: translateY(-108rem);
+  transform: translateY(-162rem);
   transition: 1s ease-in-out;
 }
+
 .calculator_body > div {
   border-radius: 10px;
 }
@@ -98,7 +117,7 @@ main {
 }
 .toggleBar_outer_container {
   height: 100%;
-  width: 50%;
+  width: 53%;
 }
 .themeNumbers_container {
   height: 50%;
@@ -110,6 +129,12 @@ main {
   font-size: 0.7rem;
   color: var(--text1);
 }
+.themeNumbers_container img {
+  width: 14px;
+  height: auto;
+  filter: invert(1);
+  margin: -0.25rem 0 0 -0.25rem;
+}
 .toggleBar {
   height: 50%;
   width: 100%;
@@ -118,7 +143,7 @@ main {
   border-radius: 30px;
   align-items: center;
   justify-content: flex-start;
-  padding: 0.3rem;
+  padding: 0.2rem;
 }
 .roundButton {
   height: 1.1rem;
@@ -229,6 +254,38 @@ button:active {
 }
 .background3 {
   background: hsl(222, 26%, 31%);
+}
+.background4 {
+  background: #5c040c;
+}
+.colors-container {
+  height: 54rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  pointer-events: none;
+}
+.colors {
+  height: 0;
+  width: 90%;
+  background: rgba(255, 0, 255, 0.7);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s linear;
+  z-index: 10;
+  margin-top: 3rem;
+}
+.active {
+  height: 90%;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
 }
 
 @media only screen and (max-width: 500px) {
