@@ -23,6 +23,7 @@
            <p>1</p>
            <p>2</p>
            <p>3</p>
+           <img onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
         </div>
             <div onclick="toggleTheme()" class="toggleBar">
               <div class="roundButton"></div>
@@ -70,11 +71,24 @@
     </div>
   </div>
 <div class="outer_container">
+  <div class="background4"></div>
   <div class="background1"></div>
   <div class="background2"></div>
   <div class="background3"></div>
 </div>
+<div class="colors-container">
+  <div class="colors">
+
+  </div>
+
+</div>
 </main>
 <script src="JS/index.js"></script>
+<script>
+const setColor = $(".colors");
+function setColors() {
+  setColor.toggleClass("active");
+}
+</script>
 </body>
 </html>
