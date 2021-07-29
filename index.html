@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
@@ -11,84 +12,127 @@
   <title>Frontend Mentor | Calculator app</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 </head>
+
 <body class="theme0">
-<main>
-  <div class="calculator_body">
-    <div class="top_container">
-      <h1 id="calc">calc</h1>
-      <div class="themes_container">
-      <p id="theme">THEME</p>
-      <div class="toggleBar_outer_container">
-        <div class="themeNumbers_container">
-           <p>1</p>
-           <p>2</p>
-           <p>3</p>
-           <img onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
-        </div>
+  <main>
+    <div class="calculator_body">
+      <div class="top_container">
+        <h1 id="calc">calc</h1>
+        <div class="themes_container">
+          <p id="theme">THEME</p>
+          <div class="toggleBar_outer_container">
+            <div class="themeNumbers_container">
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
+              <img onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
+            </div>
             <div onclick="toggleTheme()" class="toggleBar">
               <div class="roundButton"></div>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="screen_container">
+        <div class="subScreen">
+          <p class="total"></p>
         </div>
-    </div>
-    <div class="screen_container">
-      <div class="subScreen">
-        <p class="total"></p>
+        <div class="mainScreen">
+          <h1 id="display">0</h1>
+        </div>
       </div>
-      <div class="mainScreen">
-        <h1 id="display">0</h1>
-      </div>
-    </div>
-    <div class="keypad_container">
-      <div class="row_1">
-        <button class="num" value="7">7</button>
-        <button class="num" value="8">8</button>
-        <button class="num" value="9">9</button>
-        <button onclick="deleteOne()" class="deleteButton">DEL</button>
-      </div>
-      <div class="row_2">
-        <button class="num" value="4">4</button>
-        <button class="num" value="5">5</button>
-        <button class="num" value="6">6</button>
-        <button class="num" value="+">+</button>
-      </div>
-      <div class="row_3">
-        <button class="num" value="1">1</button>
-        <button class="num" value="2">2</button>
-        <button class="num" value="3">3</button>
-        <button class="num" value="-">-</button>
-      </div>
-      <div class="row_4">
-        <button onclick="addDecimal()" class="" value=".">.</button>
-        <button onclick="zero()" value="0">0</button>
-        <button class="num" value="/">/</button>
-        <button class="num" value="*">*</button>
-      </div>
-      <div class="row_5">
-        <button onclick="clearScreen()" class="resetButton">RESET</button>
-        <button onclick="getResult()" class="resultButton">=</button>
+      <div class="keypad_container">
+        <div class="row_1">
+          <button class="num" value="7">7</button>
+          <button class="num" value="8">8</button>
+          <button class="num" value="9">9</button>
+          <button onclick="deleteOne()" class="deleteButton">DEL</button>
+        </div>
+        <div class="row_2">
+          <button class="num" value="4">4</button>
+          <button class="num" value="5">5</button>
+          <button class="num" value="6">6</button>
+          <button class="num" value="+">+</button>
+        </div>
+        <div class="row_3">
+          <button class="num" value="1">1</button>
+          <button class="num" value="2">2</button>
+          <button class="num" value="3">3</button>
+          <button class="num" value="-">-</button>
+        </div>
+        <div class="row_4">
+          <button onclick="addDecimal()" class="" value=".">.</button>
+          <button onclick="zero()" value="0">0</button>
+          <button class="num" value="/">/</button>
+          <button class="num" value="*">*</button>
+        </div>
+        <div class="row_5">
+          <button onclick="clearScreen()" class="resetButton">RESET</button>
+          <button onclick="getResult()" class="resultButton">=</button>
+        </div>
       </div>
     </div>
-  </div>
-<div class="outer_container">
-  <div class="background4"></div>
-  <div class="background1"></div>
-  <div class="background2"></div>
-  <div class="background3"></div>
-</div>
-<div class="colors-container">
-  <div class="colors">
+    <div class="outer_container">
+      <div class="background4"></div>
+      <div class="background1"></div>
+      <div class="background2"></div>
+      <div class="background3"></div>
+    </div>
+    <div class="colors-container">
+      <div class="colors">
+        <div>
+          <h2>BACKGROUNDS</h2>
+          <div>
+            <div class="">
+              <p>MAIN BACKGROUND</p><input type="color" name="" value="">
+            </div>
+            <div class="">
+              <p>TOGGLE BACKGROUND</p><input type="color" name="" value="">
+            </div>
+            <div class="">
+              <p>SCREEN BACKGROUND</p><input type="color" name="" value="">
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>KEY BACKGROUNDS</h2>
+          <div>
+            <div class="">
+              <p>NUMBER KEYS</p><input type="color" name="" value="">
+            </div>
+            <div class="">
+              <p>EQUAL KEY</p><input type="color" name="" value="">
+            </div>
+            <div class="">
+              <p>DEL/RESET KEY</p><input type="color" name="" value="">
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>TEXT COLORS</h2>
+          <div>
+            <div class="">
+              <p>NUMBER KEYS</p><input type="color" name="" value="">
+            </div>
+            <div class="">
+              <p>EQUAL KEY</p><input type="color" name="" value="">
+            </div>
+            <div class="">
+              <p>DEL/RESET KEY</p><input type="color" name="" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="JS/index.js"></script>
+  <script>
+    const setColor = $(".colors");
 
-  </div>
-
-</div>
-</main>
-<script src="JS/index.js"></script>
-<script>
-const setColor = $(".colors");
-function setColors() {
-  setColor.toggleClass("active");
-}
-</script>
+    function setColors() {
+      setColor.toggleClass("active");
+    }
+  </script>
 </body>
+
 </html>
