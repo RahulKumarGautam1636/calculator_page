@@ -50,12 +50,11 @@
  --text2: hsl(52, 100%, 62%);
 }
 .theme3 {
- --mainBG: #5c040c;
+ /* --mainBG: #5c040c; */
+ --mainBG: ;
  --screenBG: #ff0c00;
  --toggleBG: #ff0c0073;
 
- /* --key: #e91e63; */
- /* --keyShadow: hsl(8deg, 91%, 70%); */
  --key: #ff008d;
  --keyShadow: hsl(327deg 100% 40%);
 
@@ -66,7 +65,6 @@
  --keyShadow2 : hsl(105deg, 86%, 32%);
 
  --text2: hsl(119deg, 99%, 49%);
- /* --text1: #ff0c00; */
  --text1: cyan;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -131,7 +129,7 @@ main {
   font-size: 0.7rem;
   color: var(--text1);
 }
-.themeNumbers_container img {
+.setting {
   width: 14px;
   height: auto;
   filter: invert(1);
@@ -271,13 +269,13 @@ button:active {
   justify-content: center;
   align-items: center;
   pointer-events: none;
+  /* pointer-events: all; */
   z-index: 10;
 }
 .colors {
   height: 135vw;
   /* max-height: 75%; */
   width: 90%;
-  pointer-events: none;
   transition: transform 0.5s ease-in-out;
   transform: translateY(-130%);
   max-height: 41rem;
@@ -291,6 +289,7 @@ button:active {
   flex-direction: column;
   padding: 0 clamp(1rem, 7vw, 3rem);
   padding-top: 0.4rem;
+  font-family: "Roboto", sans-serif;
 }
 .active {
   transform: translateY(0);
@@ -308,13 +307,17 @@ button:active {
   border-top: 2px solid grey;
   border-bottom: 2px solid grey;
 }
-.colors > div > div {
+.colors > div > div:nth-child(2) {
   display: flex;
   height: 56%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   padding-left: 1rem;
+}
+.colors > div > div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
 }
 .colors > div > div > div {
   display: flex;
@@ -324,7 +327,7 @@ button:active {
 }
 .colors h2 {
   color: #4c4c4c;
-  font-size: clamp(0.5rem, 4vw, 1.1rem);;
+  font-size: clamp(0.5rem, 4vw, 1.1rem);
 }
 .colors p {
   color: #626262;
