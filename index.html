@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="CSS/styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Spartan:wght@700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Calculator app</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 </head>
@@ -25,7 +25,7 @@
               <p>1</p>
               <p>2</p>
               <p>3</p>
-              <img onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
+              <img class="setting" onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
             </div>
             <div onclick="toggleTheme()" class="toggleBar">
               <div class="roundButton"></div>
@@ -81,44 +81,51 @@
     <div class="colors-container">
       <div class="colors">
         <div>
-          <h2>BACKGROUNDS</h2>
+          <div>
+            <h2>BACKGROUNDS</h2>
+            <img class="setting" style="filter: invert(0)" onclick="" src="CSS/settings-svgrepo-com.svg" alt="settings">
+          </div>
           <div>
             <div class="">
-              <p>MAIN BACKGROUND</p><input type="color" name="" value="">
+              <p>MAIN BACKGROUND</p><input type="color" name="" value="#ff9270">
             </div>
             <div class="">
-              <p>TOGGLE BACKGROUND</p><input type="color" name="" value="">
+              <p>TOGGLE BACKGROUND</p><input type="color" name="" value="#e070ff">
             </div>
             <div class="">
-              <p>SCREEN BACKGROUND</p><input type="color" name="" value="">
+              <p>SCREEN BACKGROUND</p><input type="color" name="" value="#03fcfc">
             </div>
           </div>
         </div>
         <div>
-          <h2>KEY BACKGROUNDS</h2>
+          <div>
+            <h2>KEY BACKGROUNDS</h2>
+          </div>
           <div>
             <div class="">
-              <p>NUMBER KEYS</p><input type="color" name="" value="">
+              <p>NUMBER KEYS</p><input type="color" name="" value="#03fc14">
             </div>
             <div class="">
-              <p>EQUAL KEY</p><input type="color" name="" value="">
+              <p>EQUAL KEY</p><input type="color" name="" value="#cafc03">
             </div>
             <div class="">
-              <p>DEL/RESET KEY</p><input type="color" name="" value="">
+              <p>DEL/RESET KEY</p><input type="color" name="" value="#fcce03">
             </div>
           </div>
         </div>
         <div>
-          <h2>TEXT COLORS</h2>
+          <div>
+            <h2>TEXT COLORS</h2>
+          </div>
           <div>
             <div class="">
-              <p>NUMBER KEYS</p><input type="color" name="" value="">
+              <p>NUMBER KEYS</p><input type="color" name="" value="#fc7b03">
             </div>
             <div class="">
-              <p>EQUAL KEY</p><input type="color" name="" value="">
+              <p>EQUAL KEY</p><input type="color" name="" value="#6af7a7">
             </div>
             <div class="">
-              <p>DEL/RESET KEY</p><input type="color" name="" value="">
+              <p>DEL/RESET KEY</p><input type="color" name="" value="#ff73f6">
             </div>
           </div>
         </div>
@@ -128,10 +135,49 @@
   <script src="JS/index.js"></script>
   <script>
     const setColor = $(".colors");
+    const clrValue = document.querySelectorAll(".colors input");
+    let theme3 = document.querySelector(":root .theme0");
+    const mainBGs = document.querySelector(".colors-container");
+    var sheet = document.styleSheets[0];
+    let theme = {
+      mainBG: "red",
+      toggleBG: "green",
+      screenBG: "blue",
+      key1: "pink",
+      keyShadow1: "yellow",
+      key2: "orange",
+      keyShadow2: "cyan",
+      key: "lightblue",
+      keyShadow: "smokewhite",
+      text1: "white",
+      text2: "black"
+    };
+
 
     function setColors() {
       setColor.toggleClass("active");
     }
+
+    function setClr() {
+      // theme3 = theme;
+      // console.log(item.value);
+      // mainBGs.style.backgroundColor = person.mainBG;
+      bg = 3;
+      toggleTheme();
+      // $("body").addClass("theme3");
+    }
+    function setClrValue(item) {
+      // theme.toggleBG = item.value
+      // theme3.style.setProperty("--screenBG", item.value);
+      sheet.insertRule(":root.theme3{--screenBG: green}");
+      setClr();
+    }
+    // alert(stylesheet.parentStyleSheet);
+    clrValue.forEach(item => {
+      item.addEventListener("click", function() {
+        setClrValue(item);
+      });
+    });
   </script>
 </body>
 
