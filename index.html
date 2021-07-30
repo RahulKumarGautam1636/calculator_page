@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/styles2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,11 +13,11 @@
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 </head>
 
-<body class="theme0">
+<body>
   <main>
     <div class="calculator_body">
       <div class="top_container">
-        <h1 id="calc">calc</h1>
+        <h1 name="calc" class="calc">calc</h1>
         <div class="themes_container">
           <p id="theme">THEME</p>
           <div class="toggleBar_outer_container">
@@ -27,13 +27,13 @@
               <p>3</p>
               <img class="setting" onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
             </div>
-            <div onclick="toggleTheme()" class="toggleBar">
+            <div name="toggleBG" onclick="toggleTheme()" class="toggleBar">
               <div class="roundButton"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="screen_container">
+      <div name="screenBG" class="screen_container">
         <div class="subScreen">
           <p class="total"></p>
         </div>
@@ -73,7 +73,7 @@
       </div>
     </div>
     <div class="outer_container">
-      <div class="background4"></div>
+      <div name="mainBG" class="background4"></div>
       <div class="background1"></div>
       <div class="background2"></div>
       <div class="background3"></div>
@@ -83,17 +83,21 @@
         <div>
           <div>
             <h2>BACKGROUNDS</h2>
-            <img class="setting" style="filter: invert(0)" onclick="" src="CSS/settings-svgrepo-com.svg" alt="settings">
+            <div id="icons">
+            <!-- <img class="setting" style="filter: invert(0)" onclick="setClrValue()" src="CSS/icon-close.svg" alt="settings"> -->
+            <img class="setting" src="CSS/check-svgrepo-com.svg" onclick="setColors()" style="filter: invert(0)" alt="save">
+            <img class="setting" src="CSS/refresh-svgrepo-com.svg" onclick="resetColors()" style="filter: invert(0)" alt="reset">
+            </div>
           </div>
           <div>
             <div class="">
-              <p>MAIN BACKGROUND</p><input type="color" name="" value="#ff9270">
+              <p>MAIN BACKGROUND</p><input type="color" name="mainBG" value="#ff9270">
             </div>
             <div class="">
-              <p>TOGGLE BACKGROUND</p><input type="color" name="" value="#e070ff">
+              <p>TOGGLE BACKGROUND</p><input type="color" name="toggleBG" value="#e070ff">
             </div>
             <div class="">
-              <p>SCREEN BACKGROUND</p><input type="color" name="" value="#03fcfc">
+              <p>SCREEN BACKGROUND</p><input type="color" name="screenBG" value="#03fcfc">
             </div>
           </div>
         </div>
@@ -103,13 +107,13 @@
           </div>
           <div>
             <div class="">
-              <p>NUMBER KEYS</p><input type="color" name="" value="#03fc14">
+              <p>NUMBER KEYS</p><input type="color" name="key1" value="#03fc14">
             </div>
             <div class="">
-              <p>EQUAL KEY</p><input type="color" name="" value="#cafc03">
+              <p>EQUAL KEY</p><input type="color" name="keyShadow1" value="#cafc03">
             </div>
             <div class="">
-              <p>DEL/RESET KEY</p><input type="color" name="" value="#fcce03">
+              <p>DEL/RESET KEY</p><input type="color" name="key2" value="#fcce03">
             </div>
           </div>
         </div>
@@ -119,63 +123,157 @@
           </div>
           <div>
             <div class="">
-              <p>NUMBER KEYS</p><input type="color" name="" value="#fc7b03">
+              <p>NUMBER KEYS</p><input type="color" name="keyShadow2" value="#fc7b03">
             </div>
             <div class="">
-              <p>EQUAL KEY</p><input type="color" name="" value="#6af7a7">
+              <p>EQUAL KEY</p><input type="color" name="text1" value="#6af7a7">
             </div>
             <div class="">
-              <p>DEL/RESET KEY</p><input type="color" name="" value="#ff73f6">
+              <p>DEL/RESET KEY</p><input type="color" name="text2" value="#ff73f6">
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </main>
   <script src="JS/index.js"></script>
   <script>
     const setColor = $(".colors");
     const clrValue = document.querySelectorAll(".colors input");
-    let theme3 = document.querySelector(":root .theme0");
+    let root = document.querySelector(":root");
     const mainBGs = document.querySelector(".colors-container");
-    var sheet = document.styleSheets[0];
-    let theme = {
-      mainBG: "red",
-      toggleBG: "green",
-      screenBG: "blue",
-      key1: "pink",
-      keyShadow1: "yellow",
-      key2: "orange",
-      keyShadow2: "cyan",
-      key: "lightblue",
-      keyShadow: "smokewhite",
-      text1: "white",
-      text2: "black"
-    };
-
+    var sheet = document.styleSheets;
 
     function setColors() {
       setColor.toggleClass("active");
+      document.querySelector(".colors").style.backgroundColor = "#c0fdfa";
+      document.querySelector(".colors").style.borderTop = "10px solid #faa56b";
     }
 
-    function setClr() {
-      // theme3 = theme;
-      // console.log(item.value);
-      // mainBGs.style.backgroundColor = person.mainBG;
+    let theme = {
+      mainBG: "#5c040c",
+      toggleBG: "#ff0c0073",
+      screenBG: "#ff0c00",
+      key1: "hsl(197, 100%, 27%)",
+      keyShadow1: "hsl(213, 91%, 52%)",
+      key2: "hsl(108, 100%, 44%)",
+      keyShadow2: "hsl(105, 86%, 32%)",
+      key: "#ff008d",
+      keyShadow: "hsl(327, 100%, 40%)",
+      text1: "cyan",
+      text2: "hsl(119, 99%, 49%)"
+    };
+    function resetColors() {
+        theme.mainBG = "#5c040c";
+        theme.toggleBG = "#ff0c0073";
+        theme.screenBG = "#ff0c00";
+        theme.key1 = "hsl(197, 100%, 27%)";
+        theme.keyShadow1 = "hsl(213, 91%, 52%)";
+        theme.key2 = "hsl(108, 100%, 44%)";
+        theme.keyShadow2 = "hsl(105, 86%, 32%)";
+        theme.key = "#ff008d";
+        theme.keyShadow = "hsl(327, 100%, 40%)";
+        theme.text1 = "cyan";
+        theme.text2 = "hsl(119, 99%, 49%)";
+      document.querySelector(".background4").style.backgroundColor = "#5c040c";
       bg = 3;
       toggleTheme();
-      // $("body").addClass("theme3");
     }
-    function setClrValue(item) {
+
+      // document.querySelector("div[name="+item.name+"]").style.backgroundColor = item.value;
       // theme.toggleBG = item.value
-      // theme3.style.setProperty("--screenBG", item.value);
-      sheet.insertRule(":root.theme3{--screenBG: green}");
-      setClr();
-    }
-    // alert(stylesheet.parentStyleSheet);
+      // sheet.insertRule(":root.theme3{--screenBG: green}", 1);
+      // root.style.setProperty("--"+item.name, item.value);
+      // theme = { ...theme, ""+item.value+"": ""+item.value+"" };
+
+
+    function setClrValue(item) {
+      if (item.name === "mainBG") {
+        document.querySelector(".background4").style.backgroundColor = item.value;
+      } else if (item.name==="toggleBG") {
+           theme.toggleBG = item.value;
+      } else if (item.name==="screenBG") {
+           theme.screenBG = item.value;
+      } else if (item.name==="key1") {
+           theme.key1 = item.value;
+      } else if (item.name==="keyShadow1") {
+           theme.keyShadow1 = item.value;
+      } else if (item.name==="key2") {
+           theme.key2 = item.value;
+      } else if (item.name==="keyShadow2") {
+           theme.keyShadow2 = item.value;
+      } else if (item.name==="key") {
+           theme.key = item.value;
+      } else if (item.name==="keyShadow") {
+           theme.keyShadow = item.value;
+      } else if (item.name==="text1") {
+           theme.text1 = item.value;
+      } else if (item.name==="text2") {
+           theme.text2 = item.value;
+      }
+    // document.querySelector(".colors").style.opacity = "1";
+    bg = 3;
+    toggleTheme();
+  }
+function staticTheme0() {
+  root.style.setProperty("--mainBG", "hsl(222, 26%, 31%)");
+  root.style.setProperty("--toggleBG", "hsl(223, 31%, 20%)");
+  root.style.setProperty("--screenBG", "hsl(224, 36%, 15%)");
+  root.style.setProperty("--key1", "hsl(225, 21%, 49%)");
+  root.style.setProperty("--keyShadow1", "hsl(224, 28%, 35%)");
+  root.style.setProperty("--key2", "hsl(6, 63%, 50%)");
+  root.style.setProperty("--keyShadow2", "hsl(6, 70%, 34%)");
+  root.style.setProperty("--key", "hsl(30, 25%, 89%)");
+  root.style.setProperty("--keyShadow", "hsl(28, 16%, 65%)");
+  root.style.setProperty("--text1", "hsl(0, 0%, 100%)");
+  root.style.setProperty("--text2", "hsl(221, 14%, 31%)");
+}
+function staticTheme1() {
+  root.style.setProperty("--mainBG", "hsl(0, 0%, 90%)");
+  root.style.setProperty("--toggleBG", "hsl(0, 5%, 81%)");
+  root.style.setProperty("--screenBG", "hsl(0, 0%, 93%)");
+  root.style.setProperty("--key1", "hsl(185, 42%, 37%)");
+  root.style.setProperty("--keyShadow1", "hsl(185, 58%, 25%)");
+  root.style.setProperty("--key2", "hsl(25, 98%, 40%)");
+  root.style.setProperty("--keyShadow2", "hsl(25, 99%, 27%)");
+  root.style.setProperty("--key", "hsl(45, 7%, 89%)");
+  root.style.setProperty("--keyShadow", "hsl(35, 11%, 61%)");
+  root.style.setProperty("--text1", "hsl(60, 10%, 19%)");
+  root.style.setProperty("--text2", "hsl(60, 10%, 19%)");
+}
+function staticTheme2() {
+  root.style.setProperty("--mainBG", "hsl(268, 75%, 9%)");
+  root.style.setProperty("--toggleBG", "hsl(268, 71%, 12%)");
+  root.style.setProperty("--screenBG", "hsl(268, 71%, 12%)");
+  root.style.setProperty("--key1", "hsl(281, 89%, 26%)");
+  root.style.setProperty("--keyShadow1", "hsl(285, 91%, 52%)");
+  root.style.setProperty("--key2", "hsl(176, 100%, 44%)");
+  root.style.setProperty("--keyShadow2", "hsl(177, 92%, 70%)");
+  root.style.setProperty("--key", "hsl(268, 47%, 21%)");
+  root.style.setProperty("--keyShadow", "hsl(290, 70%, 36%)");
+  root.style.setProperty("--text1", "hsl(52, 100%, 62%)");
+  root.style.setProperty("--text2", "hsl(52, 100%, 62%)");
+}
+function staticTheme3() {
+  root.style.setProperty("--mainBG", theme.mainBG);
+  root.style.setProperty("--toggleBG", theme.toggleBG);
+  root.style.setProperty("--screenBG", theme.screenBG);
+  root.style.setProperty("--key1", theme.key1);
+  root.style.setProperty("--keyShadow1", theme.keyShadow1);
+  root.style.setProperty("--key2", theme.key2);
+  root.style.setProperty("--keyShadow2", theme.keyShadow2);
+  root.style.setProperty("--key", theme.key);
+  root.style.setProperty("--keyShadow", theme.keyShadow);
+  root.style.setProperty("--text1", theme.text1);
+  root.style.setProperty("--text2", theme.text2);
+}
     clrValue.forEach(item => {
-      item.addEventListener("click", function() {
+      item.addEventListener("input", function() {
         setClrValue(item);
+        document.querySelector(".colors").style.backgroundColor = "transparent";
+        document.querySelector(".colors").style.border = "none";
+
       });
     });
   </script>
