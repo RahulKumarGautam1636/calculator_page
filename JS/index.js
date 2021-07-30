@@ -4,11 +4,21 @@ var toggle = $(".toggleBar");
 var body = $("body");
 var bg = 1;
 var i = true;
-function toggleTheme() {        // fucntion to change the themes.
+function toggleTheme() {      // fucntion to change the themes.
   $(".outer_container").css("transform", "translateY(-"+(162-bg*54)+"rem)");
   toggleButton.css("margin-left", (1*bg)+"rem");
   body.addClass("theme"+bg);
   body.removeClass("theme"+(bg+1));
+  if (bg===0) {
+    staticTheme0();
+  } else if (bg===1) {
+    staticTheme1();
+  } else if (bg===2) {
+    staticTheme2();
+  } else if (bg===3) {
+    staticTheme3();
+  }
+  console.log(bg);
   if ( bg === 3 && i === true ) {
     i = false;
     body.removeClass("theme"+(bg+3));
@@ -21,11 +31,10 @@ function toggleTheme() {        // fucntion to change the themes.
   } else if (i===false) {
     bg--
   }
-  console.log(bg);
 }
 // -----------------------JS Code to respond against keypress---------------------
 result = "0";
-timeline = ""
+timeline = "";
 document.addEventListener("keydown", function(event) {  // listen the keypress.
   event.preventDefault();
 var k = event.key;
