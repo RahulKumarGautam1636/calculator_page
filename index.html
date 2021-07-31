@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/vanilla-picker@2"></script>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Spartan:wght@700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Calculator app</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -97,18 +98,19 @@
           <div class="">
             <div class="colorTab">
               <ul>
-                <li>MAIN BACKGROUND <span><input type="color" name="mainBG" value="#ff9270"></span></li>
-                <li>KEYPAD/TOGGLE BACKGROUND <span><input type="color" name="toggleBG" value="#e070ff"></span></li>
-                <li>SCREEN BACKGROUND <span><input type="color" name="screenBG" value="#03fcfc"></span></li>
+                <li>MAIN BACKGROUND <span id="mainBG"></span></li>
+                <!-- <li>MAIN BACKGROUND <span><input type="color" name="mainBG" value="#ff9270"></span></li> -->
+                <li>KEYPAD/TOGGLE BACKGROUND <span id="toggleBG"></span></li>
+                <li>SCREEN BACKGROUND <span id="screenBG"></span></li>
               </ul>
               <ul>
-                <li>NUMBER KEYS <span><input type="color" name="key1" value="#03fc14"></span></li>
-                <li>DEL/RESET KEYS <span><input type="color" name="key2" value="#fcce03"></span></li>
-                <li>EQUAL KEY <span><input type="color" name="keyShadow1" value="#cafc03"></span></li>
+                <li>NUMBER KEYS <span id="key"></span></li>
+                <li>DEL/RESET KEYS <span id="key1"></span></li>
+                <li>EQUAL KEY <span id="key2"></span></li>
               </ul>
               <ul>
-                <li>NUMBER TEXTS <span><input type="color" name="keyShadow2" value="#fc7b03"></span></li>
-                <li>OTHER TEXTS <span><input type="color" name="text1" value="#6af7a7"></span></li>
+                <li>NUMBER TEXTS <span id="text1"></span></li>
+                <li>OTHER TEXTS <span id="text2"></span></li>
               </ul>
             </div>
           </div>
@@ -164,7 +166,7 @@
   <script>
     const setColor = $(".colors");
     const colorTab = document.querySelector(".colorTab");
-    const clrValue = document.querySelectorAll(".colors input");
+    const clrValue = document.querySelectorAll(".colorTab span");
     let root = document.querySelector(":root");
     const mainBGs = document.querySelector(".colors-container");
     var sheet = document.styleSheets;
@@ -241,29 +243,29 @@
       // theme = { ...theme, ""+item.value+"": ""+item.value+"" };
 
 
-    function setClrValue(item) {
-      if (item.name === "mainBG") {
-        document.querySelector(".background4").style.backgroundColor = item.value;
-      } else if (item.name==="toggleBG") {
-           theme.toggleBG = item.value;
-      } else if (item.name==="screenBG") {
-           theme.screenBG = item.value;
-      } else if (item.name==="key1") {
-           theme.key1 = item.value;
-      } else if (item.name==="keyShadow1") {
-           theme.keyShadow1 = item.value;
-      } else if (item.name==="key2") {
-           theme.key2 = item.value;
-      } else if (item.name==="keyShadow2") {
-           theme.keyShadow2 = item.value;
-      } else if (item.name==="key") {
-           theme.key = item.value;
-      } else if (item.name==="keyShadow") {
-           theme.keyShadow = item.value;
-      } else if (item.name==="text1") {
-           theme.text1 = item.value;
-      } else if (item.name==="text2") {
-           theme.text2 = item.value;
+    function setClrValue(item, value) {
+      if (item.id === "mainBG") {
+        document.querySelector(".background4").style.backgroundColor = value;
+      } else if (item.id==="toggleBG") {
+           theme.toggleBG = value;
+      } else if (item.id==="screenBG") {
+           theme.screenBG = value;
+      } else if (item.id==="key1") {
+           theme.key1 = value;
+      } else if (item.id==="keyShadow1") {
+           theme.keyShadow1 = value;
+      } else if (item.id==="key2") {
+           theme.key2 = value;
+      } else if (item.id==="keyShadow2") {
+           theme.keyShadow2 = value;
+      } else if (item.id==="key") {
+           theme.key = value;
+      } else if (item.id==="keyShadow") {
+           theme.keyShadow = value;
+      } else if (item.id==="text1") {
+           theme.text1 = value;
+      } else if (item.id==="text2") {
+           theme.text2 = value;
       }
     bg = 3;
     toggleTheme();
@@ -320,15 +322,25 @@ function staticTheme3() {
   root.style.setProperty("--text1", theme.text1);
   root.style.setProperty("--text2", theme.text2);
 }
-    clrValue.forEach(item => {
-      item.addEventListener("input", function() {
-        setClrValue(item);
-        document.querySelector(".colors").style.opacity = "0";
-      });
-      item.addEventListener("change", function() {
-        document.querySelector(".colors").style.opacity = "1";
-      });
+clrValue.forEach(item => {
+  item.addEventListener("mouseover", function() {
+  var parent = document.querySelector('#'+item.id);
+  var picker = new Picker({
+    parent: parent,
+    color: 'gold',
+    popup: "left"
+  });
+  picker.onChange = function(color) {
+    parent.style.background = color.rgbaString;
+    document.querySelector(".colors").style.visibility = "hidden";
+    setClrValue(item, color.rgbaString);
+  };
+  picker.onClose = function() {
+      document.querySelector(".colors").style.visibility = "visible";
+  };
+
     });
+});
   </script>
 </body>
 
