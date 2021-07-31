@@ -258,7 +258,8 @@ button:active {
 .colors > div:nth-child(3) {
   height: 40%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  overflow-x: clip;
 }
 .colors > div:nth-child(3) > div {
   width: 300%;
@@ -363,4 +364,8 @@ button:active {
 .keypad_container {
   padding: 4vw 3.5vw;
 }
+}
+
+.colorTab span {
+  visibility: visible;
 }
