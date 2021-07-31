@@ -136,8 +136,7 @@
     </div>
 
   </main>
-  <script src="JS/index.js"></script>
-  <script>
+  <script src="JS/index.js"></script>  <script>
     const setColor = $(".colors");
     const clrValue = document.querySelectorAll(".colors input");
     let root = document.querySelector(":root");
@@ -146,8 +145,8 @@
 
     function setColors() {
       setColor.toggleClass("active");
-      document.querySelector(".colors").style.backgroundColor = "#c0fdfa";
-      document.querySelector(".colors").style.borderTop = "10px solid #faa56b";
+      // document.querySelector(".colors").style.backgroundColor = "#c0fdfa";
+      // document.querySelector(".colors").style.borderTop = "10px solid #faa56b";
     }
 
     let theme = {
@@ -211,7 +210,6 @@
       } else if (item.name==="text2") {
            theme.text2 = item.value;
       }
-    // document.querySelector(".colors").style.opacity = "1";
     bg = 3;
     toggleTheme();
   }
@@ -270,9 +268,10 @@ function staticTheme3() {
     clrValue.forEach(item => {
       item.addEventListener("input", function() {
         setClrValue(item);
-        document.querySelector(".colors").style.backgroundColor = "transparent";
-        document.querySelector(".colors").style.border = "none";
-
+        document.querySelector(".colors").style.opacity = "0";
+      });
+      item.addEventListener("change", function() {
+        document.querySelector(".colors").style.opacity = "1";
       });
     });
   </script>
