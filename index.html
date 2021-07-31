@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/styles2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -80,16 +80,39 @@
     </div>
     <div class="colors-container">
       <div class="colors">
-        <div>
+        <!-- <div> -->
           <div>
-            <h2>BACKGROUNDS</h2>
+            <h2>CHOOSE COLOR FOR</h2>
             <div id="icons">
             <!-- <img class="setting" style="filter: invert(0)" onclick="setClrValue()" src="CSS/icon-close.svg" alt="settings"> -->
             <img class="setting" src="CSS/check-svgrepo-com.svg" onclick="setColors()" style="filter: invert(0)" alt="save">
-            <img class="setting" src="CSS/refresh-svgrepo-com.svg" onclick="resetColors()" style="filter: invert(0)" alt="reset">
+            <img class="setting" id="refresh" src="CSS/refresh-svgrepo-com.svg" onclick="resetColors()" style="filter: invert(0)" alt="reset">
             </div>
           </div>
           <div>
+            <span id="BG" class="activeTab" onclick="setBG()">BACKGROUNDS</span>
+            <span id="keys" onclick="setKeys()">KEYS</span>
+            <span id="texts" onclick="setText()">TEXTS</span>
+          </div>
+          <div class="">
+            <div class="colorTab">
+              <ul>
+                <li>MAIN BACKGROUND <span><input type="color" name="mainBG" value="#ff9270"></span></li>
+                <li>KEYPAD/TOGGLE BACKGROUND <span><input type="color" name="toggleBG" value="#e070ff"></span></li>
+                <li>SCREEN BACKGROUND <span><input type="color" name="screenBG" value="#03fcfc"></span></li>
+              </ul>
+              <ul>
+                <li>NUMBER KEYS <span><input type="color" name="key1" value="#03fc14"></span></li>
+                <li>DEL/RESET KEYS <span><input type="color" name="key2" value="#fcce03"></span></li>
+                <li>EQUAL KEY <span><input type="color" name="keyShadow1" value="#cafc03"></span></li>
+              </ul>
+              <ul>
+                <li>NUMBER TEXTS <span><input type="color" name="keyShadow2" value="#fc7b03"></span></li>
+                <li>OTHER TEXTS <span><input type="color" name="text1" value="#6af7a7"></span></li>
+              </ul>
+            </div>
+          </div>
+          <!-- <div>
             <div class="">
               <p>MAIN BACKGROUND</p><input type="color" name="mainBG" value="#ff9270">
             </div>
@@ -99,9 +122,9 @@
             <div class="">
               <p>SCREEN BACKGROUND</p><input type="color" name="screenBG" value="#03fcfc">
             </div>
-          </div>
-        </div>
-        <div>
+          </div> -->
+        <!-- </div> -->
+        <!-- <div>
           <div>
             <h2>KEY BACKGROUNDS</h2>
           </div>
@@ -116,8 +139,8 @@
               <p>DEL/RESET KEY</p><input type="color" name="key2" value="#fcce03">
             </div>
           </div>
-        </div>
-        <div>
+        </div> -->
+        <!-- <div>
           <div>
             <h2>TEXT COLORS</h2>
           </div>
@@ -128,16 +151,19 @@
             <div class="">
               <p>EQUAL KEY</p><input type="color" name="text1" value="#6af7a7">
             </div>
-            <div class=""><p>DEL/RESET KEY</p><label><input style="opacity: 0" type="color" name="text2" value="#ff73f6"></label>
+            <div class="">
+              <p>DEL/RESET KEY</p><input type="color" name="text2" value="#ff73f6">
+            </div>
           </div>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
   </main>
-  <script src="JS/index.js"></script>  <script>
+  <script src="JS/index.js"></script>
+  <script>
     const setColor = $(".colors");
+    const colorTab = document.querySelector(".colorTab");
     const clrValue = document.querySelectorAll(".colors input");
     let root = document.querySelector(":root");
     const mainBGs = document.querySelector(".colors-container");
@@ -145,9 +171,38 @@
 
     function setColors() {
       setColor.toggleClass("active");
-      // document.querySelector(".colors").style.backgroundColor = "#c0fdfa";
-      // document.querySelector(".colors").style.borderTop = "10px solid #faa56b";
     }
+    var n = 0;
+    function setBG() {
+      n = 0;
+      currentTab();
+      colorTab.style.transform = "translateX(0)";
+    }
+    function setKeys() {
+      n = 1;
+      currentTab();
+      colorTab.style.transform = "translateX(-33.33%)";
+    }
+    function setText() {
+      n = 2;
+      currentTab();
+      colorTab.style.transform = "translateX(-66.66%)";
+    }
+    function currentTab() {
+      if (n === 0) {
+        $("#BG").addClass("activeTab");
+        $("#keys").removeClass("activeTab");
+        $("#texts").removeClass("activeTab");
+      } else if (n === 1) {
+        $("#texts").removeClass("activeTab");
+        $("#keys").addClass("activeTab");
+        $("#BG").removeClass("activeTab");
+      } else if (n === 2) {
+        $("#texts").addClass("activeTab");
+        $("#BG").removeClass("activeTab");
+        $("#keys").removeClass("activeTab");
+      }
+      }
 
     let theme = {
       mainBG: "#5c040c",
