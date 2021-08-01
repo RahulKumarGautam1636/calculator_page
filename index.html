@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/styles2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -83,7 +83,7 @@
       <div class="colors">
         <!-- <div> -->
           <div>
-            <h2>CHOOSE COLOR FOR</h2>
+            <h2 onclick="deleteLocalColors()">CHOOSE COLOR FOR</h2>
             <div id="icons">
             <!-- <img class="setting" style="filter: invert(0)" onclick="setClrValue()" src="CSS/icon-close.svg" alt="settings"> -->
             <img class="setting" src="CSS/check-svgrepo-com.svg" onclick="setColors()" style="filter: invert(0)" alt="save">
@@ -126,9 +126,9 @@
     const mainBGs = document.querySelector(".colors-container");
     var sheet = document.styleSheets;
 
-    function setColors() {
-      setColor.toggleClass("active");
-    }
+    // function setColors() {
+    //   setColor.toggleClass("active");
+    // }
     var n = 0;
     function setBG() {
       n = 0;
@@ -168,21 +168,42 @@
         $("#tab-keys").removeClass("active-color-tab");
         $("#tab-texts").addClass("active-color-tab");
       }
+    }
+    let theme = getLocalColors();
+    function getLocalColors() {
+      colors = localStorage.getItem("myColors");
+      if (!colors) {
+          colors = {
+          mainBG: "#5c040c",
+          toggleBG: "#ff0c0073",
+          screenBG: "#ff0c00",
+          key1: "hsl(197, 100%, 27%)",
+          keyShadow1: "hsl(213, 91%, 52%)",
+          key2: "hsl(108, 100%, 44%)",
+          keyShadow2: "hsl(105, 86%, 32%)",
+          key: "#ff008d",
+          keyShadow: "hsl(327, 100%, 40%)",
+          text1: "cyan",
+          text2: "hsl(119, 99%, 49%)"
+        };
+        return colors;
+      } else {
+        colors = JSON.parse(colors);
+        return colors;
       }
 
-    let theme = {
-      mainBG: "#5c040c",
-      toggleBG: "#ff0c0073",
-      screenBG: "#ff0c00",
-      key1: "hsl(197, 100%, 27%)",
-      keyShadow1: "hsl(213, 91%, 52%)",
-      key2: "hsl(108, 100%, 44%)",
-      keyShadow2: "hsl(105, 86%, 32%)",
-      key: "#ff008d",
-      keyShadow: "hsl(327, 100%, 40%)",
-      text1: "cyan",
-      text2: "hsl(119, 99%, 49%)"
-    };
+    }
+    function setColors(theme) {
+      setColor.toggleClass("active");
+    }
+    function deleteLocalColors() {
+      localStorage.removeItem("myColors");
+    }
+    function saveColorsLocally(theme) {
+      clr = JSON.stringify(theme);
+      localStorage.setItem("myColors", clr);
+    }
+
     function resetColors() {
         theme.mainBG = "#5c040c";
         theme.toggleBG = "#ff0c0073";
@@ -209,7 +230,7 @@
 
     function setClrValue(item, value) {
       if (item.id === "mainBG") {
-        document.querySelector(".background4").style.backgroundColor = value;
+           theme.mainBG = value;
       } else if (item.id==="toggleBG") {
            theme.toggleBG = value;
       } else if (item.id==="screenBG") {
@@ -231,11 +252,12 @@
       } else if (item.id==="text2") {
            theme.text2 = value;
       }
+    saveColorsLocally(theme);
     bg = 3;
     toggleTheme();
   }
 function staticTheme0() {
-  root.style.setProperty("--mainBG", "hsl(222, 26%, 31%)");
+  // root.style.setProperty("--mainBG", "hsl(222, 26%, 31%)");   No need to change since its on static container.
   root.style.setProperty("--toggleBG", "hsl(223, 31%, 20%)");
   root.style.setProperty("--screenBG", "hsl(224, 36%, 15%)");
   root.style.setProperty("--key1", "hsl(225, 21%, 49%)");
@@ -248,7 +270,7 @@ function staticTheme0() {
   root.style.setProperty("--text2", "hsl(221, 14%, 31%)");
 }
 function staticTheme1() {
-  root.style.setProperty("--mainBG", "hsl(0, 0%, 90%)");
+  // root.style.setProperty("--mainBG", "hsl(0, 0%, 90%)");
   root.style.setProperty("--toggleBG", "hsl(0, 5%, 81%)");
   root.style.setProperty("--screenBG", "hsl(0, 0%, 93%)");
   root.style.setProperty("--key1", "hsl(185, 42%, 37%)");
@@ -261,7 +283,7 @@ function staticTheme1() {
   root.style.setProperty("--text2", "hsl(60, 10%, 19%)");
 }
 function staticTheme2() {
-  root.style.setProperty("--mainBG", "hsl(268, 75%, 9%)");
+  // root.style.setProperty("--mainBG", "hsl(268, 75%, 9%)");
   root.style.setProperty("--toggleBG", "hsl(268, 71%, 12%)");
   root.style.setProperty("--screenBG", "hsl(268, 71%, 12%)");
   root.style.setProperty("--key1", "hsl(281, 89%, 26%)");
@@ -304,6 +326,7 @@ clrValue.forEach(item => {
   picker.onClose = function() {
       document.querySelector(".colors").style.visibility = "visible";
       item.style.visibility = "inherit";
+      // saveColorsLocally(theme);
   };
 
   });
