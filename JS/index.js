@@ -10,15 +10,20 @@ function toggleTheme() {      // fucntion to change the themes.
   body.addClass("theme"+bg);
   body.removeClass("theme"+(bg+1));
   if (bg===0) {
-    staticTheme0();
+    // staticTheme0();
+    switchThemes(components, theme0);
   } else if (bg===1) {
-    staticTheme1();
+    // staticTheme1();
+    switchThemes(components, theme1);
   } else if (bg===2) {
-    staticTheme2();
+    // staticTheme2();
+    switchThemes(components, theme2);
   } else if (bg===3) {
+    // fillColorBoxes();
     staticTheme3();
+    // switchThemes(components, theme3);
   }
-  console.log(bg);
+  // console.log(bg);
   if ( bg === 3 && i === true ) {
     i = false;
     body.removeClass("theme"+(bg+3));
@@ -39,7 +44,7 @@ document.addEventListener("keydown", function(event) {  // listen the keypress.
   event.preventDefault();
 var k = event.key;
   if (k==="0") {
-    zero();                      // call different fucntions by detecting the pressed keys.
+    zero();                      // call different functions by detecting the pressed keys.
   } else if (k===".") {
     addDecimal();
   } else if (k==="Enter") {
@@ -120,7 +125,7 @@ function getResult() {   // fucntion to calculate Result with error handling.
   }
 } catch (e) {
     total.html("Syntax Error..");
-    console.log(e);
+    // console.log(e);
   }
   total.addClass("moveTotal");
   t = !t;
