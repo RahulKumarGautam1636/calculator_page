@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/styles2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,7 +18,7 @@
   <main>
     <div class="calculator_body">
       <div class="top_container">
-        <h1 name="calc" class="calc">calc</h1>
+        <h1 onclick="updateColors()" name="calc" class="calc">calc</h1>
         <div class="themes_container">
           <p id="theme">THEME</p>
           <div class="toggleBar_outer_container">
@@ -83,7 +83,7 @@
       <div class="colors">
         <!-- <div> -->
           <div>
-            <h2 onclick="deleteLocalColors()">CHOOSE COLOR FOR</h2>
+            <h2>CHOOSE COLOR FOR</h2>
             <div id="icons">
             <!-- <img class="setting" style="filter: invert(0)" onclick="setClrValue()" src="CSS/icon-close.svg" alt="settings"> -->
             <img class="setting" src="CSS/check-svgrepo-com.svg" onclick="setColors()" style="filter: invert(0)" alt="save">
@@ -98,18 +98,29 @@
           <div class="">
             <div class="colorTab">
               <ul id="tab-BG" class="active-color-tab">
-                <li>MAIN BACKGROUND <span data="#5c040c" style="background: #5c040c" id="mainBG"></span></li>
+                <!-- <li>MAIN BACKGROUND <span data="#5c040c" style="background: #5c040c" id="mainBG"></span></li>
                 <li>KEYPAD/TOGGLE BACKGROUND <span data="#ff0c0073" style="background: #ff0c0073" id="toggleBG"></span></li>
-                <li>SCREEN BACKGROUND <span data="#ff0c00" style="background: #ff0c00" id="screenBG"></span></li>
+                <li>SCREEN BACKGROUND <span data="#ff0c00" style="background: #ff0c00" id="screenBG"></span></li> -->
+
+                <li>MAIN BACKGROUND <span data="#5c040c" id="mainBG"></span></li>
+                <li>KEYPAD/TOGGLE BACKGROUND <span data="#ff0c0073" id="toggleBG"></span></li>
+                <li>SCREEN BACKGROUND <span data="#ff0c00" id="screenBG"></span></li>
               </ul>
               <ul id="tab-keys">
-                <li>NUMBER KEYS <span data="hsl(327, 100%, 40%)" style="background: hsl(327, 100%, 40%)" id="key"></span></li>
+                <!-- <li>NUMBER KEYS <span data="hsl(327, 100%, 40%)" style="background: hsl(327, 100%, 40%)" id="key"></span></li>
                 <li>DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" style="background: hsl(197, 100%, 27%)" id="key1"></span></li>
-                <li>EQUAL KEY <span data="hsl(108, 100%, 44%)" style="background: hsl(108, 100%, 44%)" id="key2"></span></li>
+                <li>EQUAL KEY <span data="hsl(108, 100%, 44%)" style="background: hsl(108, 100%, 44%)" id="key2"></span></li> -->
+
+                <li>NUMBER KEYS <span data="hsl(327, 100%, 40%)" id="key"></span></li>
+                <li>DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" id="key1"></span></li>
+                <li>EQUAL KEY <span data="hsl(108, 100%, 44%)" id="key2"></span></li>
               </ul>
               <ul id="tab-texts">
-                <li>NUMBER TEXTS <span data="hsl(119, 99%, 49%)" style="background: hsl(119, 99%, 49%)" id="text1"></span></li>
-                <li>OTHER TEXTS <span data="cyan" style="background: cyan" id="text2"></span></li>
+                <!-- <li>NUMBER TEXTS <span data="hsl(119, 99%, 49%)" style="background: hsl(119, 99%, 49%)" id="text1"></span></li>
+                <li>OTHER TEXTS <span data="cyan" style="background: cyan" id="text2"></span></li> -->
+
+                <li>NUMBER TEXTS <span data="hsl(119, 99%, 49%)" id="text1"></span></li>
+                <li>OTHER TEXTS <span data="cyan" id="text2"></span></li>
               </ul>
             </div>
           </div>
@@ -126,9 +137,6 @@
     const mainBGs = document.querySelector(".colors-container");
     var sheet = document.styleSheets;
 
-    // function setColors() {
-    //   setColor.toggleClass("active");
-    // }
     var n = 0;
     function setBG() {
       n = 0;
@@ -196,27 +204,15 @@
     function setColors(theme) {
       setColor.toggleClass("active");
     }
-    function deleteLocalColors() {
-      localStorage.removeItem("myColors");
-    }
     function saveColorsLocally(theme) {
       clr = JSON.stringify(theme);
       localStorage.setItem("myColors", clr);
     }
 
     function resetColors() {
-        theme.mainBG = "#5c040c";
-        theme.toggleBG = "#ff0c0073";
-        theme.screenBG = "#ff0c00";
-        theme.key1 = "hsl(197, 100%, 27%)";
-        theme.keyShadow1 = "hsl(213, 91%, 52%)";
-        theme.key2 = "hsl(108, 100%, 44%)";
-        theme.keyShadow2 = "hsl(105, 86%, 32%)";
-        theme.key = "#ff008d";
-        theme.keyShadow = "hsl(327, 100%, 40%)";
-        theme.text1 = "cyan";
-        theme.text2 = "hsl(119, 99%, 49%)";
-      document.querySelector(".background4").style.backgroundColor = "#5c040c";
+      localStorage.removeItem("myColors");         // Remove colors from local storage.
+      theme = getLocalColors();
+      fillColorBoxes();
       bg = 3;
       toggleTheme();
     }
@@ -255,46 +251,60 @@
     saveColorsLocally(theme);
     bg = 3;
     toggleTheme();
-  }
-function staticTheme0() {
-  // root.style.setProperty("--mainBG", "hsl(222, 26%, 31%)");   No need to change since its on static container.
-  root.style.setProperty("--toggleBG", "hsl(223, 31%, 20%)");
-  root.style.setProperty("--screenBG", "hsl(224, 36%, 15%)");
-  root.style.setProperty("--key1", "hsl(225, 21%, 49%)");
-  root.style.setProperty("--keyShadow1", "hsl(224, 28%, 35%)");
-  root.style.setProperty("--key2", "hsl(6, 63%, 50%)");
-  root.style.setProperty("--keyShadow2", "hsl(6, 70%, 34%)");
-  root.style.setProperty("--key", "hsl(30, 25%, 89%)");
-  root.style.setProperty("--keyShadow", "hsl(28, 16%, 65%)");
-  root.style.setProperty("--text1", "hsl(0, 0%, 100%)");
-  root.style.setProperty("--text2", "hsl(221, 14%, 31%)");
-}
-function staticTheme1() {
-  // root.style.setProperty("--mainBG", "hsl(0, 0%, 90%)");
-  root.style.setProperty("--toggleBG", "hsl(0, 5%, 81%)");
-  root.style.setProperty("--screenBG", "hsl(0, 0%, 93%)");
-  root.style.setProperty("--key1", "hsl(185, 42%, 37%)");
-  root.style.setProperty("--keyShadow1", "hsl(185, 58%, 25%)");
-  root.style.setProperty("--key2", "hsl(25, 98%, 40%)");
-  root.style.setProperty("--keyShadow2", "hsl(25, 99%, 27%)");
-  root.style.setProperty("--key", "hsl(45, 7%, 89%)");
-  root.style.setProperty("--keyShadow", "hsl(35, 11%, 61%)");
-  root.style.setProperty("--text1", "hsl(60, 10%, 19%)");
-  root.style.setProperty("--text2", "hsl(60, 10%, 19%)");
-}
-function staticTheme2() {
-  // root.style.setProperty("--mainBG", "hsl(268, 75%, 9%)");
-  root.style.setProperty("--toggleBG", "hsl(268, 71%, 12%)");
-  root.style.setProperty("--screenBG", "hsl(268, 71%, 12%)");
-  root.style.setProperty("--key1", "hsl(281, 89%, 26%)");
-  root.style.setProperty("--keyShadow1", "hsl(285, 91%, 52%)");
-  root.style.setProperty("--key2", "hsl(176, 100%, 44%)");
-  root.style.setProperty("--keyShadow2", "hsl(177, 92%, 70%)");
-  root.style.setProperty("--key", "hsl(268, 47%, 21%)");
-  root.style.setProperty("--keyShadow", "hsl(290, 70%, 36%)");
-  root.style.setProperty("--text1", "hsl(52, 100%, 62%)");
-  root.style.setProperty("--text2", "hsl(52, 100%, 62%)");
-}
+    }
+
+const components = ["--toggleBG", "--screenBG", "--key1", "--keyShadow1", "--key2", "--keyShadow2", "--key", "--keyShadow", "--text1", "--text2"];
+const theme0 = ["hsl(223, 31%, 20%)", "hsl(224, 36%, 15%)", "hsl(225, 21%, 49%)", "hsl(224, 28%, 35%)", "hsl(6, 63%, 50%)", "hsl(6, 70%, 34%)", "hsl(30, 25%, 89%)", "hsl(28, 16%, 65%)", "hsl(0, 0%, 100%)", "hsl(221, 14%, 31%)"];
+const theme1 = ["hsl(0, 5%, 81%)", "hsl(0, 0%, 93%)", "hsl(185, 42%, 37%)", "hsl(185, 58%, 25%)", "hsl(25, 98%, 40%)", "hsl(25, 99%, 27%)", "hsl(45, 7%, 89%)", "hsl(35, 11%, 61%)", "hsl(60, 10%, 19%)", "hsl(60, 10%, 19%)"];
+const theme2 = ["hsl(268, 71%, 12%)", "hsl(268, 71%, 12%)", "hsl(281, 89%, 26%)", "hsl(285, 91%, 52%)", "hsl(176, 100%, 44%)", "hsl(177, 92%, 70%)", "hsl(268, 47%, 21%)", "hsl(290, 70%, 36%)", "hsl(52, 100%, 62%)", "hsl(52, 100%, 62%)"];
+var   theme3 = [theme.toggleBG, theme.screenBG, theme.key1, theme.keyShadow1, theme.key2, theme.keyShadow2, theme.key, theme.keyShadow, theme.text1, theme.text2];
+
+    function switchThemes(components, themes) {
+      for (var i=0; i<components.length; i++) {
+           root.style.setProperty(components[i], themes[i]);
+           console.log(components[i]);
+         }
+    }
+
+// function staticTheme0() {
+//   root.style.setProperty("--mainBG", "hsl(222, 26%, 31%)");   // No need to change since its on static container.
+//   root.style.setProperty("--toggleBG", "hsl(223, 31%, 20%)");
+//   root.style.setProperty("--screenBG", "hsl(224, 36%, 15%)");
+//   root.style.setProperty("--key1", "hsl(225, 21%, 49%)");
+//   root.style.setProperty("--keyShadow1", "hsl(224, 28%, 35%)");
+//   root.style.setProperty("--key2", "hsl(6, 63%, 50%)");
+//   root.style.setProperty("--keyShadow2", "hsl(6, 70%, 34%)");
+//   root.style.setProperty("--key", "hsl(30, 25%, 89%)");
+//   root.style.setProperty("--keyShadow", "hsl(28, 16%, 65%)");
+//   root.style.setProperty("--text1", "hsl(0, 0%, 100%)");
+//   root.style.setProperty("--text2", "hsl(221, 14%, 31%)");
+// }
+// function staticTheme1() {
+//   // root.style.setProperty("--mainBG", "hsl(0, 0%, 90%)");
+//   root.style.setProperty("--toggleBG", "hsl(0, 5%, 81%)");
+//   root.style.setProperty("--screenBG", "hsl(0, 0%, 93%)");
+//   root.style.setProperty("--key1", "hsl(185, 42%, 37%)");
+//   root.style.setProperty("--keyShadow1", "hsl(185, 58%, 25%)");
+//   root.style.setProperty("--key2", "hsl(25, 98%, 40%)");
+//   root.style.setProperty("--keyShadow2", "hsl(25, 99%, 27%)");
+//   root.style.setProperty("--key", "hsl(45, 7%, 89%)");
+//   root.style.setProperty("--keyShadow", "hsl(35, 11%, 61%)");
+//   root.style.setProperty("--text1", "hsl(60, 10%, 19%)");
+//   root.style.setProperty("--text2", "hsl(60, 10%, 19%)");
+// }
+// function staticTheme2() {
+//   // root.style.setProperty("--mainBG", "hsl(268, 75%, 9%)");
+//   root.style.setProperty("--toggleBG", "hsl(268, 71%, 12%)");
+//   root.style.setProperty("--screenBG", "hsl(268, 71%, 12%)");
+//   root.style.setProperty("--key1", "hsl(281, 89%, 26%)");
+//   root.style.setProperty("--keyShadow1", "hsl(285, 91%, 52%)");
+//   root.style.setProperty("--key2", "hsl(176, 100%, 44%)");
+//   root.style.setProperty("--keyShadow2", "hsl(177, 92%, 70%)");
+//   root.style.setProperty("--key", "hsl(268, 47%, 21%)");
+//   root.style.setProperty("--keyShadow", "hsl(290, 70%, 36%)");
+//   root.style.setProperty("--text1", "hsl(52, 100%, 62%)");
+//   root.style.setProperty("--text2", "hsl(52, 100%, 62%)");
+// }
 function staticTheme3() {
   root.style.setProperty("--mainBG", theme.mainBG);
   root.style.setProperty("--toggleBG", theme.toggleBG);
@@ -308,15 +318,23 @@ function staticTheme3() {
   root.style.setProperty("--text1", theme.text1);
   root.style.setProperty("--text2", theme.text2);
 }
+function fillColorBoxes() {
+clrValue.forEach((items) => {
+  var box = document.querySelector('#'+items.id);
+  box.style.background = theme[""+items.id+""];
+});
+}
 clrValue.forEach(item => {
-  item.addEventListener("mouseover", function() {
+  var picker = item.id;
   var data = item.getAttribute("data");
-  var parent = document.querySelector('#'+item.id);
+  var parent = document.querySelector('#'+picker);
+  fillColorBoxes();
   var picker = new Picker({
     parent: parent,
     color: data,
     popup: "left"
   });
+  item.addEventListener("mouseover", function() {
   picker.onChange = function(color) {
     parent.style.background = color.rgbaString;
     document.querySelector(".colors").style.visibility = "hidden";
@@ -326,7 +344,6 @@ clrValue.forEach(item => {
   picker.onClose = function() {
       document.querySelector(".colors").style.visibility = "visible";
       item.style.visibility = "inherit";
-      // saveColorsLocally(theme);
   };
 
   });
