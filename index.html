@@ -97,67 +97,22 @@
           </div>
           <div class="">
             <div class="colorTab">
-              <ul>
-                <li>MAIN BACKGROUND <span id="mainBG"></span></li>
-                <!-- <li>MAIN BACKGROUND <span><input type="color" name="mainBG" value="#ff9270"></span></li> -->
-                <li>KEYPAD/TOGGLE BACKGROUND <span id="toggleBG"></span></li>
-                <li>SCREEN BACKGROUND <span id="screenBG"></span></li>
+              <ul id="tab-BG" class="active-color-tab">
+                <li>MAIN BACKGROUND <span data="#5c040c" style="background: #5c040c" id="mainBG"></span></li>
+                <li>KEYPAD/TOGGLE BACKGROUND <span data="#ff0c0073" style="background: #ff0c0073" id="toggleBG"></span></li>
+                <li>SCREEN BACKGROUND <span data="#ff0c00" style="background: #ff0c00" id="screenBG"></span></li>
               </ul>
-              <ul>
-                <li>NUMBER KEYS <span id="key"></span></li>
-                <li>DEL/RESET KEYS <span id="key1"></span></li>
-                <li>EQUAL KEY <span id="key2"></span></li>
+              <ul id="tab-keys">
+                <li>NUMBER KEYS <span data="hsl(327, 100%, 40%)" style="background: hsl(327, 100%, 40%)" id="key"></span></li>
+                <li>DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" style="background: hsl(197, 100%, 27%)" id="key1"></span></li>
+                <li>EQUAL KEY <span data="hsl(108, 100%, 44%)" style="background: hsl(108, 100%, 44%)" id="key2"></span></li>
               </ul>
-              <ul>
-                <li>NUMBER TEXTS <span id="text1"></span></li>
-                <li>OTHER TEXTS <span id="text2"></span></li>
+              <ul id="tab-texts">
+                <li>NUMBER TEXTS <span data="hsl(119, 99%, 49%)" style="background: hsl(119, 99%, 49%)" id="text1"></span></li>
+                <li>OTHER TEXTS <span data="cyan" style="background: cyan" id="text2"></span></li>
               </ul>
             </div>
           </div>
-          <!-- <div>
-            <div class="">
-              <p>MAIN BACKGROUND</p><input type="color" name="mainBG" value="#ff9270">
-            </div>
-            <div class="">
-              <p>TOGGLE BACKGROUND</p><input type="color" name="toggleBG" value="#e070ff">
-            </div>
-            <div class="">
-              <p>SCREEN BACKGROUND</p><input type="color" name="screenBG" value="#03fcfc">
-            </div>
-          </div> -->
-        <!-- </div> -->
-        <!-- <div>
-          <div>
-            <h2>KEY BACKGROUNDS</h2>
-          </div>
-          <div>
-            <div class="">
-              <p>NUMBER KEYS</p><input type="color" name="key1" value="#03fc14">
-            </div>
-            <div class="">
-              <p>EQUAL KEY</p><input type="color" name="keyShadow1" value="#cafc03">
-            </div>
-            <div class="">
-              <p>DEL/RESET KEY</p><input type="color" name="key2" value="#fcce03">
-            </div>
-          </div>
-        </div> -->
-        <!-- <div>
-          <div>
-            <h2>TEXT COLORS</h2>
-          </div>
-          <div>
-            <div class="">
-              <p>NUMBER KEYS</p><input type="color" name="keyShadow2" value="#fc7b03">
-            </div>
-            <div class="">
-              <p>EQUAL KEY</p><input type="color" name="text1" value="#6af7a7">
-            </div>
-            <div class="">
-              <p>DEL/RESET KEY</p><input type="color" name="text2" value="#ff73f6">
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
 
@@ -195,14 +150,23 @@
         $("#BG").addClass("activeTab");
         $("#keys").removeClass("activeTab");
         $("#texts").removeClass("activeTab");
+        $("#tab-BG").addClass("active-color-tab");
+        $("#tab-keys").removeClass("active-color-tab");
+        $("#tab-texts").removeClass("active-color-tab");
       } else if (n === 1) {
         $("#texts").removeClass("activeTab");
         $("#keys").addClass("activeTab");
         $("#BG").removeClass("activeTab");
+        $("#tab-BG").removeClass("active-color-tab");
+        $("#tab-keys").addClass("active-color-tab");
+        $("#tab-texts").removeClass("active-color-tab");
       } else if (n === 2) {
         $("#texts").addClass("activeTab");
         $("#BG").removeClass("activeTab");
         $("#keys").removeClass("activeTab");
+        $("#tab-BG").removeClass("active-color-tab");
+        $("#tab-keys").removeClass("active-color-tab");
+        $("#tab-texts").addClass("active-color-tab");
       }
       }
 
@@ -324,22 +288,25 @@ function staticTheme3() {
 }
 clrValue.forEach(item => {
   item.addEventListener("mouseover", function() {
+  var data = item.getAttribute("data");
   var parent = document.querySelector('#'+item.id);
   var picker = new Picker({
     parent: parent,
-    color: 'gold',
+    color: data,
     popup: "left"
   });
   picker.onChange = function(color) {
     parent.style.background = color.rgbaString;
     document.querySelector(".colors").style.visibility = "hidden";
+    item.style.visibility = "visible";
     setClrValue(item, color.rgbaString);
   };
   picker.onClose = function() {
       document.querySelector(".colors").style.visibility = "visible";
+      item.style.visibility = "inherit";
   };
 
-    });
+  });
 });
   </script>
 </body>
