@@ -20,7 +20,7 @@ body {
   font-family: 'Spartan', sans-serif;
 }
 main {
-  /* min-height: 54rem; */
+  min-height: 54rem;
   height: 100vh;
   overflow: hidden;
   position: relative;
@@ -126,9 +126,11 @@ main {
   width: 100%;
   background: var(--screenBG);
   margin-bottom: 1.2rem;
-  /* overflow: scroll; */
-  overflow: hidden;
+  /* overflow-x: scroll; */
 }
+/* .screen_container::-webkit-scrollbar-thumb {
+  background: red;
+} */
 .subScreen {
   height: 30%;
   display: flex;
@@ -293,6 +295,9 @@ button:active {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 .colors li {
   font-size: clamp(0.5rem, 3.4vw, 1rem);
@@ -346,6 +351,9 @@ button:active {
   .resetButton, .deleteButton {
     font-size: 3.3vw;
   }
+  .colors > div:nth-child(3) {
+    overflow: visible;
+  }
 }
 @media only screen and (max-width: 420px) {
 .calculator_body {
@@ -358,14 +366,18 @@ button:active {
 .mainScreen {
   height: 65%;
 }
-.subScreen {
-  /* height: 27%; */
-}
 .keypad_container {
   padding: 4vw 3.5vw;
 }
+.popup.popup_left {
+  left: -325% !important;
+  top: -45% !important;
 }
-
-.colorTab span {
-  visibility: visible;
+}
+.popup.popup_left {
+  top: -45% !important;
+}
+.active-color-tab {
+  opacity: 1 !important;
+  pointer-events: all !important;
 }
