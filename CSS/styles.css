@@ -209,7 +209,7 @@ button:active {
   background: hsl(222, 26%, 31%);
 }
 .background4 {
-  background: #5c040c;
+  background: var(--mainBG);
   transition: background 0.5s;
 }
 .colors-container {
