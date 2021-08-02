@@ -111,9 +111,22 @@
                 <li>DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" style="background: hsl(197, 100%, 27%)" id="key1"></span></li>
                 <li>EQUAL KEY <span data="hsl(108, 100%, 44%)" style="background: hsl(108, 100%, 44%)" id="key2"></span></li> -->
 
-                <li>NUMBER KEYS <span data="hsl(327, 100%, 40%)" id="key"></span></li>
-                <li>DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" id="key1"></span></li>
-                <li>EQUAL KEY <span data="hsl(108, 100%, 44%)" id="key2"></span></li>
+                <li class="keyBG">NUMBER KEYS <span data="#ff008d" id="key"></span></li>
+                <li class="keyBG">DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" id="key1"></span></li>
+                <li class="keyBG">EQUAL KEY <span data="hsl(108, 100%, 44%)" id="key2"></span></li>
+
+                <li class="shadows hide_element">NUMBER KEYS <span data="hsl(327, 100%, 40%)" id="keyShadow"></span></li>
+                <li class="shadows hide_element">DEL/RESET KEYS <span data="hsl(105, 86%, 32%)" id="keyShadow2"></span></li>
+                <li class="shadows hide_element">EQUAL KEY <span data="hsl(213, 91%, 52%)" id="keyShadow1"></span></li>
+                <div class="shadows-container">
+                  <p>BACKGROUNDS</p>
+                  <label>
+                    <input type="checkbox" onclick="switchShadowColor()">
+                    <div class="check"></div>
+                    <div class="btn"></div>
+                  </label>
+                  <p>SHADOWS</p>
+                </div>
               </ul>
               <ul id="tab-texts">
                 <!-- <li>NUMBER TEXTS <span data="hsl(119, 99%, 49%)" style="background: hsl(119, 99%, 49%)" id="text1"></span></li>
@@ -130,12 +143,11 @@
   </main>
   <script src="JS/index.js"></script>
   <script>
-    const setColor = $(".colors");
+    const setColor = document.querySelector(".colors");
     const colorTab = document.querySelector(".colorTab");
     const clrValue = document.querySelectorAll(".colorTab span");
     let root = document.querySelector(":root");
-    const mainBGs = document.querySelector(".colors-container");
-    var sheet = document.styleSheets;
+    const refresh = document.querySelector("#refresh");
 
     var n = 0;
     function setBG() {
@@ -202,7 +214,7 @@
 
     }
     function setColors(theme) {
-      setColor.toggleClass("active");
+      setColor.classList.toggle("active");
     }
     function saveColorsLocally(theme) {
       clr = JSON.stringify(theme);
@@ -215,6 +227,10 @@
       fillColorBoxes();
       bg = 3;
       toggleTheme();
+    }
+    function switchShadowColor() {
+      $(".keyBG").toggleClass("hide_element");
+      $(".shadows").toggleClass("hide_element");
     }
 
       // document.querySelector("div[name="+item.name+"]").style.backgroundColor = item.value;
@@ -339,12 +355,12 @@ clrValue.forEach(item => {
   item.addEventListener("mouseover", function() {
   picker.onChange = function(color) {
     parent.style.background = color.rgbaString;
-    document.querySelector(".colors").style.visibility = "hidden";
+    setColor.style.visibility = "hidden";
     item.style.visibility = "visible";
     setClrValue(item, color.rgbaString);
   };
   picker.onClose = function() {
-      document.querySelector(".colors").style.visibility = "visible";
+      setColor.style.visibility = "visible";
       item.style.visibility = "inherit";
   };
 
