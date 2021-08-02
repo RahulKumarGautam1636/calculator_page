@@ -323,13 +323,14 @@ clrValue.forEach((items) => {
   var box = document.querySelector('#'+items.id);
   box.style.background = theme[""+items.id+""];
   box.setAttribute("data",theme[items.id]);
+  document.querySelector("#mainBG").setAttribute("data", theme.mainBG);
 });
 }
+fillColorBoxes();
 clrValue.forEach(item => {
   var picker = item.id;
   var data = item.getAttribute("data");
   var parent = document.querySelector('#'+picker);
-  fillColorBoxes();
   var picker = new Picker({
     parent: parent,
     color: data,
