@@ -322,6 +322,7 @@ function fillColorBoxes() {
 clrValue.forEach((items) => {
   var box = document.querySelector('#'+items.id);
   box.style.background = theme[""+items.id+""];
+  box.setAttribute("data",theme[items.id]);
 });
 }
 clrValue.forEach(item => {
