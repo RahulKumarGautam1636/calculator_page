@@ -32,6 +32,7 @@ function toggleTheme() {          //  To switch between the themes.
     bg--
   }
 }
+toggleTheme();
 
 const setColor = document.querySelector(".colors");
 const colorTab = document.querySelector(".colorTab");
