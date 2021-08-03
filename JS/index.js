@@ -2,7 +2,7 @@
 var toggleButton = $(".roundButton");
 var toggle = $(".toggleBar");
 var body = $("body");
-var bg = 1;
+var bg = 3;
 var i = true;
 
 function toggleTheme() {          //  To switch between the themes.
