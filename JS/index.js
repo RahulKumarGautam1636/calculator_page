@@ -32,7 +32,6 @@ function toggleTheme() {          //  To switch between the themes.
     bg--
   }
 }
-toggleTheme();
 
 const setColor = document.querySelector(".colors");
 const colorTab = document.querySelector(".colorTab");
@@ -181,7 +180,7 @@ clrValue.forEach(item => {        // Initialise the Pickers.
 
   });
 });
-
+toggleTheme();
 // -----------------------JS to respond against keypress---------------------
 result = "0";
 timeline = "";
