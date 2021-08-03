@@ -5,7 +5,7 @@ var body = $("body");
 var bg = 1;
 var i = true;
 
-function toggleTheme() { // fucntion to change the themes.
+function toggleTheme() {          //  To switch between the themes.
   $(".outer_container").css("transform", "translateY(-" + (162 - bg * 54) + "rem)");
   toggleButton.css("margin-left", (1 * bg) + "rem");
   body.addClass("theme" + bg);
@@ -39,10 +39,9 @@ const clrValue = document.querySelectorAll(".colorTab span");
 let root = document.querySelector(":root");
 var n = 0;
 
-function setBG() {
+function setBG() {          // Get background color setting panel.
   n = 0;
   colorTab.style.transform = "translateX(0)";
-  // $("test span").removeClass("activeTab");
   $("#BG").addClass("activeTab");
   $("#keys").removeClass("activeTab");
   $("#texts").removeClass("activeTab");
@@ -51,10 +50,9 @@ function setBG() {
   $("#tab-texts").removeClass("active-color-tab");
 }
 
-function setKeys() {
+function setKeys() {           // Get keys color setting panel.
   n = 1;
   colorTab.style.transform = "translateX(-33.33%)";
-  // $("test span").removeClass("activeTab");
   $("#texts").removeClass("activeTab");
   $("#keys").addClass("activeTab");
   $("#BG").removeClass("activeTab");
@@ -63,10 +61,9 @@ function setKeys() {
   $("#tab-texts").removeClass("active-color-tab");
 }
 
-function setText() {
+function setText() {         // Get text color setting panel.
   n = 2;
   colorTab.style.transform = "translateX(-66.66%)";
-  // $("test span").removeClass("activeTab");
   $("#texts").addClass("activeTab");
   $("#BG").removeClass("activeTab");
   $("#keys").removeClass("activeTab");
@@ -76,7 +73,7 @@ function setText() {
 
 }
 
-let theme = getLocalColors();
+let theme = getLocalColors();           // Get colors from localStorage if exists otherwise create new color object.
 
 function getLocalColors() {
   colors = localStorage.getItem("myColors");
@@ -101,29 +98,29 @@ function getLocalColors() {
   }
 }
 
-function setColors(theme) {
+function setColors(theme) {            // Get color customising panel.
   setColor.classList.toggle("active");
 }
 
-function saveColorsLocally(theme) {
+function saveColorsLocally(theme) {    // Save theme colors in localStorage.
   clr = JSON.stringify(theme);
   localStorage.setItem("myColors", clr);
 }
 
-function resetColors() {
-  localStorage.removeItem("myColors"); // Remove colors from local storage.
+function resetColors() {               // Remove colors from local storage and reset colors.
+  localStorage.removeItem("myColors");
   theme = getLocalColors();
   fillColorBoxes();
   bg = 3;
   toggleTheme();
 }
 
-function switchShadowColor() {
+function switchShadowColor() {            // Switch between backgrounds and shadow color settings for keys.
   $(".keyBG").toggleClass("hide_element");
   $(".shadows").toggleClass("hide_element");
 }
 
-function setClrValue(item, value) {
+function setClrValue(item, value) {       // Update theme colors and save it to localStorage.
   theme[item.id] = value;
   saveColorsLocally(theme);
   bg = 3;
@@ -136,20 +133,20 @@ const theme0 = ["hsl(223, 31%, 20%)", "hsl(224, 36%, 15%)", "hsl(225, 21%, 49%)"
 const theme1 = ["hsl(0, 5%, 81%)", "hsl(0, 0%, 93%)", "hsl(185, 42%, 37%)", "hsl(185, 58%, 25%)", "hsl(25, 98%, 40%)", "hsl(25, 99%, 27%)", "hsl(45, 7%, 89%)", "hsl(35, 11%, 61%)", "hsl(60, 10%, 19%)", "hsl(60, 10%, 19%)"];
 const theme2 = ["hsl(268, 71%, 12%)", "hsl(268, 71%, 12%)", "hsl(281, 89%, 26%)", "hsl(285, 91%, 52%)", "hsl(176, 100%, 44%)", "hsl(177, 92%, 70%)", "hsl(268, 47%, 21%)", "hsl(290, 70%, 36%)", "hsl(52, 100%, 62%)", "hsl(52, 100%, 62%)"];
 
-function switchThemes(components, themes) {
+function switchThemes(components, themes) {            // Switch between static themes.
   for (var i = 0; i < components.length; i++) {
     root.style.setProperty("--" + components[i], themes[i]);
   }
 }
 
-function coustomTheme() {
+function coustomTheme() {                   // Enable couston theme.
   components.forEach(item => {
     root.style.setProperty("--mainBG", theme.mainBG);
     root.style.setProperty("--" + item, theme[item]);
   });
 }
 
-function fillColorBoxes() {
+function fillColorBoxes() {                 // Update colors of color picker boxes.
   clrValue.forEach((items) => {
     var box = document.querySelector('#' + items.id);
     box.style.background = theme["" + items.id + ""];
@@ -157,9 +154,9 @@ function fillColorBoxes() {
     document.querySelector("#mainBG").setAttribute("data", theme.mainBG);
   });
 }
-
 fillColorBoxes();
-clrValue.forEach(item => {
+
+clrValue.forEach(item => {        // Initialise the Pickers.
   var picker = item.id;
   var data = item.getAttribute("data");
   var parent = document.querySelector('#' + picker);
@@ -169,7 +166,7 @@ clrValue.forEach(item => {
     popup: "left"
   });
 
-  item.addEventListener("mouseover", function() {
+  item.addEventListener("mouseover", function() {      // Listen for events on Pickers to respond accordingly.
     picker.onChange = function(color) {
       parent.style.background = color.rgbaString;
       setColor.style.visibility = "hidden";
@@ -184,10 +181,10 @@ clrValue.forEach(item => {
   });
 });
 
-// -----------------------JS Code to respond against keypress---------------------
+// -----------------------JS to respond against keypress---------------------
 result = "0";
 timeline = "";
-document.addEventListener("keydown", function(event) { // listen the keypress.
+document.addEventListener("keydown", function(event) { // listen for the keypress.
   event.preventDefault();
   var k = event.key;
   if (k === "0") {
@@ -204,12 +201,12 @@ document.addEventListener("keydown", function(event) { // listen the keypress.
   }
   output(k, "Enter"); // keeps screen updated on every keypress.
 });
-// -------------------------------------JS Code for calculation-------------------------------------------
+// -------------------------------------JS for calculation-------------------------------------------
 
 var display = $("#display");
 var total = $(".total");
 
-function addNumbers(n) { // fucntion to insert numbers and operators except "0" and "." to the evaluable string
+function addNumbers(n) { // To insert numbers and operators except "0" and "." to the evaluable string
   if (Number.isInteger(parseInt(n))) {
     if (!Number.isInteger(parseInt(result[result.length - 2])) && result[result.length - 2] !== "." && result[result.length - 1] === "0") {
       result = result.slice(0, -1);
@@ -231,7 +228,7 @@ $(".num").click(function() { // call addNumbers() on user clicks
   addNumbers($(this).text());
 });
 
-function zero() { // fucntion to insert "0" with some special rules to avoid Errors.
+function zero() { // To insert "0" with some special rules to avoid Errors.
   if ((result[result.length - 1] === "0" && !Number.isInteger(parseInt(result[result.length - 2])))) {
     if (result[result.length - 2] === ".") {
       result += "0";
@@ -246,7 +243,7 @@ function zero() { // fucntion to insert "0" with some special rules to avoid Err
   display.html(result);
 }
 
-function addDecimal() { // fucntion to insert "." with some special rules to avoid Errors.
+function addDecimal() { // To insert "." with some special rules to avoid Errors.
   if (checkValidity(result + ".")) {
     result += ".";
   }
@@ -257,7 +254,7 @@ function addDecimal() { // fucntion to insert "." with some special rules to avo
 t = true;
 previousResult = "";
 
-function getResult() { // fucntion to calculate Result with error handling.
+function getResult() { // To calculate Result with error handling.
   try {
     if (Number.isInteger(parseInt(result.slice(-1)))) {
       total.html(result + " = ");
@@ -300,7 +297,7 @@ function deleteOne() { // deletes one number.
   result = result.slice(0, -1);
 }
 
-function output(x, y) { // keeps the screen updated with every click and keypress.
+function output(x, y) { // keeps the screen updated with every click/keypress.
   if (x !== y && x !== "0") {
     display.html(result);
     total.html(timeline);
