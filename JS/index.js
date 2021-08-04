@@ -181,7 +181,7 @@ clrValue.forEach(item => {        // Initialise the Pickers.
 
   });
 });
-applyCoustomtheme();
+// applyCoustomtheme();
 // -----------------------JS to respond against keypress---------------------
 result = "0";
 timeline = "";
