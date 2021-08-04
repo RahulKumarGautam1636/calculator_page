@@ -79,7 +79,7 @@ function getLocalColors() {
   colors = localStorage.getItem("myColors");
   if (!colors) {
     colors = {
-      mainBG: "#5c040c",
+      mainBG: "rgba(130,23,33,1)",
       toggleBG: "#ff0c0073",
       screenBG: "#ff0c00",
       key1: "hsl(197, 100%, 27%)",
