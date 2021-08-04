@@ -33,7 +33,7 @@ main {
   height: 218rem;
   width: 100%;
   transform: translateY(-162rem);
-  /* transition: 1s ease-in-out; */
+  transition: 1s ease-in-out;
 }
 
 .calculator_body>div {
@@ -403,6 +403,7 @@ label .check::before {
   content: '';
   position: absolute;
   top: calc(50% - 4px);
+  
   left: clamp(-1.5rem, -7vw, -5.5rem);
   width: 8px;
   height: 8px;
