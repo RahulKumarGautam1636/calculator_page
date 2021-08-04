@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/styles2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -11,14 +10,12 @@
   <script src="https://unpkg.com/vanilla-picker@2"></script>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Spartan:wght@700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Calculator app</title>
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 </head>
-
 <body>
   <main>
     <div class="calculator_body">
       <div class="top_container">
-        <h1 onclick="updateColors()" name="calc" class="calc">calc</h1>
+        <h1 class="calc">calc</h1>
         <div class="themes_container">
           <p id="theme">THEME</p>
           <div class="toggleBar_outer_container">
@@ -28,13 +25,13 @@
               <p>3</p>
               <img class="setting" onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
             </div>
-            <div name="toggleBG" onclick="toggleTheme()" class="toggleBar">
+            <div onclick="toggleTheme()" class="toggleBar">
               <div class="roundButton"></div>
             </div>
           </div>
         </div>
       </div>
-      <div name="screenBG" class="screen_container" onclick="coustomThemes()">
+      <div class="screen_container">
         <div class="subScreen">
           <p class="total"></p>
         </div>
@@ -74,7 +71,7 @@
       </div>
     </div>
     <div class="outer_container">
-      <div name="mainBG" class="background4"></div>
+      <div class="background4"></div>
       <div class="background1"></div>
       <div class="background2"></div>
       <div class="background3"></div>
@@ -118,15 +115,17 @@
               </div>
             </ul>
             <ul id="tab-texts">
-              <li>NUMBER TEXTS <span data="hsl(119, 99%, 49%)" id="text1"></span></li>
-              <li>OTHER TEXTS <span data="cyan" id="text2"></span></li>
+              <li>NUMBER TEXTS <span data="cyan" id="text2"></span></li>
+              <li>OTHER TEXTS <span data="hsl(119, 99%, 49%)" id="text1"></span></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+    <div class="attribution">
+      <p>Challenge by <a href="https://frontendmentor.io">Frontend Mentor</a>. Coded by <a href="https://www.frontendmentor.io/profile/RahulKumarGautam1636">Rahul Kumar Gautam.</a></p>
+    </div>
   </main>
   <script src="JS/index.js"></script>
 </body>
-
 </html>
