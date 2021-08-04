@@ -2,7 +2,7 @@
 var toggleButton = $(".roundButton");
 var toggle = $(".toggleBar");
 var body = $("body");
-var bg = 3;
+var bg = 1;
 var i = true;
 
 function toggleTheme() {          //  To switch between the themes.
@@ -100,8 +100,12 @@ function getLocalColors() {
 
 function setColors(theme) {            // Get color customising panel.
   setColor.classList.toggle("active");
+  applyCoustomtheme();
 }
-
+function applyCoustomtheme() {         // Force/directly toggle to coustom theme.
+  bg = 3;
+  toggleTheme();
+}
 function saveColorsLocally(theme) {    // Save theme colors in localStorage.
   clr = JSON.stringify(theme);
   localStorage.setItem("myColors", clr);
@@ -111,8 +115,7 @@ function resetColors() {               // Remove colors from local storage and r
   localStorage.removeItem("myColors");
   theme = getLocalColors();
   fillColorBoxes();
-  bg = 3;
-  toggleTheme();
+  applyCoustomtheme()
 }
 
 function switchShadowColor() {            // Switch between backgrounds and shadow color settings for keys.
@@ -123,9 +126,7 @@ function switchShadowColor() {            // Switch between backgrounds and shad
 function setClrValue(item, value) {       // Update theme colors and save it to localStorage.
   theme[item.id] = value;
   saveColorsLocally(theme);
-  bg = 3;
-  toggleTheme();
-  console.log("running");
+  applyCoustomtheme()
 }
 
 const components = ["toggleBG", "screenBG", "key1", "keyShadow1", "key2", "keyShadow2", "key", "keyShadow", "text1", "text2"];
@@ -180,7 +181,7 @@ clrValue.forEach(item => {        // Initialise the Pickers.
 
   });
 });
-toggleTheme();
+applyCoustomtheme();
 // -----------------------JS to respond against keypress---------------------
 result = "0";
 timeline = "";
