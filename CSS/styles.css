@@ -33,7 +33,7 @@ main {
   height: 218rem;
   width: 100%;
   transform: translateY(-162rem);
-  transition: 1s ease-in-out;
+  /* transition: 1s ease-in-out; */
 }
 
 .calculator_body>div {
@@ -461,6 +461,23 @@ label input:checked~.btn {
 
 .hide_element {
   display: none !important;
+}
+
+.attribution {
+  position: absolute;
+  left: 0;
+  bottom: 3%;
+  width: 100%;
+  text-align: center;
+}
+
+.attribution p,
+.attribution a {
+  /* color: rgba(255,255,255,0.3); */
+  color: var(--text1);
+  text-decoration: none;
+  font-size: clamp(0.5rem, 2.5vw, 1rem);
+  transition: color 1.4s ease-in-out;
 }
 
 @media only screen and (max-width: 500px) {
