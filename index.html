@@ -1,204 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <title>Frontend Mentor | E-commerce product page</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/vanilla-picker@2"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Spartan:wght@700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Calculator app</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 </head>
+
 <body>
-  <div class="nav_container">
-    <!-- <div class="nav"> -->
-
-      <div class="logo_container">
-      <img onclick="toggleNav()" id="open_menu" src="images/icon-menu.svg" alt="menu">
-      <img class="logo" src="images/logo.svg" alt="logo">
+  <main>
+    <div class="calculator_body">
+      <div class="top_container">
+        <h1 class="calc">calc</h1>
+        <div class="themes_container">
+          <p id="theme">THEME</p>
+          <div class="toggleBar_outer_container">
+            <div class="themeNumbers_container">
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
+              <img class="setting" onclick="setColors()" src="CSS/settings-svgrepo-com.svg" alt="settings">
+            </div>
+            <div onclick="toggleTheme()" class="toggleBar">
+              <div class="roundButton"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="nav_wrapper">
-
-      <div class="nav_links">
-      <ul>
-        <img id="close_menu" onclick="toggleNav()" src="images/icon-close.svg" alt="close">
-        <li><a href="#">Collections</a></li>
-        <li><a href="#">Men</a></li>
-        <li><a href="#">Women</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-
-  </div>
-  <!-- </div> -->
-    <div class="cart_container">
-      <img onclick="toggleCart()" src="images/icon-cart.svg" alt="cart">
-      <img src="images/image-avatar.png" alt="profile_img">
-    </div>
-    <div class="cart">
-      <h3>Cart</h3>
-      <div id="cart_empty">
-        <h4>Your cart is empty.</h4>
+      <div class="screen_container">
+        <div class="subScreen">
+          <p class="total"></p>
+        </div>
+        <div class="mainScreen">
+          <h1 id="display">0</h1>
+        </div>
       </div>
-      <div id="cart_wrapper">
-
-    <div style="width: 100%" id="cart_list">
-
-    </div>
-      <button id="checkout_button" type="button" name="button">CHECKOUT</button>
-    </div>
-    </div>
-  </div>
-  <div class="product_container">
-    <div class="image_container">
-      <div class="main_image">
-      <img id="preview_Image" src="images\image-product-1.jpg" alt="preview">
-      </div>
-      <div class="thumbnail_box">
-        <img onclick="switchImage(1)" src="images\image-product-1-thumbnail.jpg" alt="thumbnail">
-        <img onclick="switchImage(2)" src="images\image-product-2-thumbnail.jpg" alt="thumbnail">
-        <img onclick="switchImage(3)" src="images\image-product-3-thumbnail.jpg" alt="thumbnail">
-        <img onclick="switchImage(4)" src="images\image-product-4-thumbnail.jpg" alt="thumbnail">
+      <div class="keypad_container">
+        <div class="row_1">
+          <button class="num" value="7">7</button>
+          <button class="num" value="8">8</button>
+          <button class="num" value="9">9</button>
+          <button onclick="deleteOne()" class="deleteButton">DEL</button>
+        </div>
+        <div class="row_2">
+          <button class="num" value="4">4</button>
+          <button class="num" value="5">5</button>
+          <button class="num" value="6">6</button>
+          <button class="num" value="+">+</button>
+        </div>
+        <div class="row_3">
+          <button class="num" value="1">1</button>
+          <button class="num" value="2">2</button>
+          <button class="num" value="3">3</button>
+          <button class="num" value="-">-</button>
+        </div>
+        <div class="row_4">
+          <button onclick="addDecimal()" class="" value=".">.</button>
+          <button onclick="zero()" value="0">0</button>
+          <button class="num" value="/">/</button>
+          <button class="num" value="*">*</button>
+        </div>
+        <div class="row_5">
+          <button onclick="clearScreen()" class="resetButton">RESET</button>
+          <button onclick="getResult()" class="resultButton">=</button>
+        </div>
       </div>
     </div>
-    <div id="details_box" class="details_container">
-     <p>SNEAKER COMPANY</p>
-     <h1>Fall Limited Edition Sneakers</h1>
-     <p class="about">These low-profile sneakes are your prefect casual wear companion. Featuring a durable rubber outer sole. they'll withstand everything the weeather can offer.</p>
-     <div class="price_box">
-       <div>
-         <h2>$125.00</h2>
-         <div id="discount_box"><h4>50%</h4></div>
-       </div>
-       <p>$250.00</p>
-     </div>
-     <div class="counter_box">
-       <div class="counter">
-         <img onclick="itemCount(1)" src="images/icon-plus.svg" alt="add">
-         <p id="itemCount">1</p>
-         <img onclick="itemCount(-1)" src="images/icon-minus.svg" alt="remove">
-       </div>
-       <button onclick="renderCartItems(1)" class="addToCartButton" type="button" name="button">
-         <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#fff" fill-rule="nonzero"/></svg>
-         Add To Cart
-       </button>
-     </div>
+    <div class="outer_container">
+      <div class="background4"></div>
+      <div class="background1"></div>
+      <div class="background2"></div>
+      <div class="background3"></div>
     </div>
-  </div>
-<script>
-  const nav_bar = document.querySelector('.nav_container .nav_links');
-  const cart = document.querySelector('.cart');
-  const cart_list = document.querySelector('#cart_list');
-  const previewImage = document.querySelector('#preview_Image');
-  let totalItem = 1;
-  const items = [
-    {
-      id: 1,
-      tag: 'Autumn Limited Edition',
-      rate: 101.50,
-      images: ['images/image-product-1.jpg', 'images/image-product-2.jpg', 'images/image-product-3.jpg', 'images/image-product-4.jpg'],
-      thumbs: ['images/image-product-1-thumbnail.jpg', 'images/image-product-2-thumbnail.jpg', 'images/image-product-3-thumbnail.jpg', 'images/image-product-4-thumbnail.jpg'],
-      quantity: 1
-    }
-  ]
-  let cartItems = [
-      {
-        id: 2,
-        tag: 'This is sample item.',
-        rate: 101.50,
-        images: ['images/image-product-1.jpg', 'images/image-product-2.jpg', 'images/image-product-3.jpg', 'images/image-product-4.jpg'],
-        thumbs: ['images/image-product-2-thumbnail.jpg', 'images/image-product-2-thumbnail.jpg', 'images/image-product-3-thumbnail.jpg', 'images/image-product-4-thumbnail.jpg'],
-        quantity: 2
-      }
-  ];
-
-  const itemCount = (i) => {
-    if (totalItem+i === 0) {
-      return;
-    }
-    totalItem = totalItem + i;
-    document.querySelector('#itemCount').innerText = totalItem;
-  }
-
-  const toggleNav = () => {
-    nav_bar.classList.toggle('active');
-  }
-  const toggleCart = () => {
-    cart.classList.toggle('active');
-  }
-  const renderCartItems = (id) => {
-    if (checkDuplicate) {
-      deleteItem(id);
-    }
-    const selectedItem = items.filter(i => i.id === id)[0];
-    newItem(selectedItem.id, selectedItem.thumbs[0], selectedItem.tag, selectedItem.rate, totalItem);
-    cartItems.push(selectedItem);
-  }
-
-  const newItem = (id, imgLink='1', tag='This is sample code', rate=100.50, quantity=totalItem) => {
-    cartItem = document.createElement('div');
-    cartItem.classList.add('cart_item');
-
-    img = document.createElement('img');
-    img.setAttribute('src', imgLink);
-    cartItem.appendChild(img);
-
-    itemDetails = document.createElement('div');
-    itemDetails.classList.add('item_details');
-
-    info = document.createElement('p');
-    info.innerText = tag;
-    itemDetails.appendChild(info);
-    price = document.createElement('p');
-    price.innerText = `${rate} x ${quantity} ${rate*quantity}`;
-    itemDetails.appendChild(price);
-    cartItem.appendChild(itemDetails);
-
-    delImg = document.createElement('img');
-    delImg.setAttribute('src', 'images/icon-delete.svg');
-    // delImg.onclick = function(id) {
-    //   console.log(id);
-    //   deleteItem(id);    // don't use this method it passes event instead of passing parameter id.
-    // };
-    delImg.addEventListener('click', function() {
-      deleteItem(id)
-    })
-
-    cartItem.appendChild(delImg);
-    cart_list.appendChild(cartItem);
-  }
-  const deleteItem = (id) => {
-    while (cart_list.hasChildNodes()) {
-      cart_list.removeChild(cart_list.firstChild);
-    }
-    console.log(id);
-    cartItems = cartItems.filter(i => i.id !== id);1
-    console.log(cartItems);
-    cartItems.forEach(i => newItem(i.id, i.thumbs[0], i.tag, i.rate, i.quantity));
-  }
-  function renderCart() {
-    cartItems.forEach(i => newItem(i.id, i.thumbs[0], i.tag, i.rate, i.totalItem));
-  }
-  renderCart();
-  const switchImage = (i) => {
-    preview_Image.setAttribute('src', `images/image-product-${i}.jpg`);
-  }
-  const checkDuplicate = (id) => {
-    const duplicateItem = cartItems.filter(i => i.id === id );
-    if (duplicateItem.length > 0) {
-      return true;
-    }
-    return false;
-  }
-</script>
+    <div class="colors-container">
+      <div class="colors">
+        <div>
+          <h2>CHOOSE COLOR FOR</h2>
+          <div id="icons">
+            <img class="setting" src="CSS/check-svgrepo-com.svg" onclick="setColors()" style="filter: invert(0)" alt="save">
+            <img class="setting" id="refresh" src="CSS/refresh-svgrepo-com.svg" onclick="resetColors()" style="filter: invert(0)" alt="reset">
+          </div>
+        </div>
+        <div>
+          <span id="BG" class="activeTab" onclick="setBG()">BACKGROUNDS</span>
+          <span id="keys" onclick="setKeys()">KEYS</span>
+          <span id="texts" onclick="setText()">TEXTS</span>
+        </div>
+        <div class="">
+          <div class="colorTab">
+            <ul id="tab-BG" class="active-color-tab">
+              <li>MAIN BACKGROUND <span data="rgba(130,23,33,1)" id="mainBG"></span></li>
+              <li>KEYPAD/TOGGLE BACKGROUND <span data="#ff0c0073" id="toggleBG"></span></li>
+              <li>SCREEN BACKGROUND <span data="#ff0c00" id="screenBG"></span></li>
+            </ul>
+            <ul id="tab-keys">
+              <li class="keyBG">NUMBER KEYS <span data="#ff008d" id="key"></span></li>
+              <li class="keyBG">DEL/RESET KEYS <span data="hsl(197, 100%, 27%)" id="key1"></span></li>
+              <li class="keyBG">EQUAL KEY <span data="hsl(108, 100%, 44%)" id="key2"></span></li>
+              <li class="shadows hide_element">NUMBER KEYS <span data="hsl(327, 100%, 40%)" id="keyShadow"></span></li>
+              <li class="shadows hide_element">DEL/RESET KEYS <span data="hsl(105, 86%, 32%)" id="keyShadow2"></span></li>
+              <li class="shadows hide_element">EQUAL KEY <span data="hsl(213, 91%, 52%)" id="keyShadow1"></span></li>
+              <div class="shadows-container">
+                <p>BACKGROUNDS</p>
+                <label>
+                  <input type="checkbox" onclick="switchShadowColor()">
+                  <div class="check"></div>
+                  <div class="btn"></div>
+                </label>
+                <p>SHADOWS</p>
+              </div>
+            </ul>
+            <ul id="tab-texts">
+              <li>NUMBER TEXTS <span data="cyan" id="text2"></span></li>
+              <li>OTHER TEXTS <span data="hsl(119, 99%, 49%)" id="text1"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="attribution">
+      <p>Challenge by <a href="https://frontendmentor.io">Frontend Mentor</a>. Coded by <a href="https://https://www.frontendmentor.io/profile/RahulKumarGautam1636">Rahul Kumar Gautam.</a></p>
+    </div>
+  </main>
+  <script src="JS/index.js"></script>
 </body>
+
 </html>
-
-
-<!-- <div class="attribution">
-  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-  Coded by <a href="#">Your Name Here</a>.
-</div> -->
