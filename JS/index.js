@@ -129,6 +129,7 @@ function setClrValue(item, value) {       // Update theme colors and save it to 
   applyCoustomtheme()
 }
 
+// List of Components and their recspective theme colors.
 const components = ["toggleBG", "screenBG", "key1", "keyShadow1", "key2", "keyShadow2", "key", "keyShadow", "text1", "text2"];
 const theme0 = ["hsl(223, 31%, 20%)", "hsl(224, 36%, 15%)", "hsl(225, 21%, 49%)", "hsl(224, 28%, 35%)", "hsl(6, 63%, 50%)", "hsl(6, 70%, 34%)", "hsl(30, 25%, 89%)", "hsl(28, 16%, 65%)", "hsl(0, 0%, 100%)", "hsl(221, 14%, 31%)"];
 const theme1 = ["hsl(0, 5%, 81%)", "hsl(0, 0%, 93%)", "hsl(185, 42%, 37%)", "hsl(185, 58%, 25%)", "hsl(25, 98%, 40%)", "hsl(25, 99%, 27%)", "hsl(45, 7%, 89%)", "hsl(35, 11%, 61%)", "hsl(60, 10%, 19%)", "hsl(60, 10%, 19%)"];
@@ -185,22 +186,24 @@ clrValue.forEach(item => {        // Initialise the Pickers.
 // -----------------------JS to respond against keypress---------------------
 result = "0";
 timeline = "";
-document.addEventListener("keydown", function(event) { // listen for the keypress.
-  event.preventDefault();
-  var k = event.key;
-  if (k === "0") {
-    zero(); // call different functions by detecting the pressed keys.
-  } else if (k === ".") {
-    addDecimal();
-  } else if (k === "Enter") {
+document.addEventListener("keydown", function(e) { // listen for the keypress.
+  e.preventDefault();
+  var c = e.keyCode;                       // Get KeyCode.
+  var k = e.key                            // Get the Key.
+  if (c === 13) {                          // The Enter Key.
     getResult();
-  } else if (k === "Backspace") {
+  } else if (c === 8) {                    // The Backspace Key.
     deleteOne();
-  } else if (Number.isInteger(parseInt(k)) ||
-    k === "+" || k === "-" || k === "*" || k === "/") {
-    addNumbers(k);
+  } else if ((c >= 96 && c <= 111) || (c >= 48 && c <= 57)) {        // Detect Other Number and Operators Keys.
+    if (k === "0") {                   // Zero Key.
+      zero();
+    } else if (k === ".") {            // Decimal Key.
+      addDecimal();
+    } else {
+      addNumbers(k);
+    }
   }
-  output(k, "Enter"); // keeps screen updated on every keypress.
+  output(k, "Enter");                  // Keeps screen updated on every keypress.
 });
 // -------------------------------------JS for calculation-------------------------------------------
 
